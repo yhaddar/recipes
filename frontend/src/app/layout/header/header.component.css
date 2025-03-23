@@ -1,0 +1,11 @@
+.logo {
+  font-family: var(--font-logo), sans-serif;
+}
+
+.navbar {
+  border-bottom-color: var(--clr-border-header);
+}
+
+.font-family-1 {
+  font-family: var(--font-family-1), cursive;
+}

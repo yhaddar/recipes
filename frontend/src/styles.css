@@ -1,0 +1,18 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Iansui&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lobster&display=swap');
+@import "tailwindcss";
+@import "./app/layout/header/header.component.css";
+@import "./app/features/home/hero/hero.component.css";
+@import "./app/layout/header/header.component.css";
+
+:root {
+  --clr-border-header: rgba(0, 0, 0, 0.1);
+  --clr-hero-component: #E7FAFE;
+  --clr-bg-time: rgba(0, 0, 0, 0.05);
+  --clr-text-opacity-06: rgba(0, 0, 0, 0.6);
+
+  --font-family-1: "Iansui";
+  --font-family-2: "Inter";
+  --font-logo: "Lobster";
+
+}

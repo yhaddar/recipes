@@ -1,0 +1,15 @@
+.hero-component {
+  background-color: var(--clr-hero-component);
+}
+
+.font-family-2 {
+  font-family: var(--font-family-2), sans-serif !important;
+}
+
+.time-container {
+  background-color: var(--clr-bg-time);
+}
+
+.color-gray-opacity-06 {
+  color: var(--clr-text-opacity-06) !important;
+}
