@@ -1,6 +1,6 @@
-<div class="my-8">
+<div class="pt-[100px]">
   <div class="container mx-auto">
-    <div class="w-full h-[640px] flex hero-component rounded-[30px] shadow-lg">
+    <div class="w-full h-[640px] flex bg-primary rounded-[30px] shadow-lg">
       <div class="w-1/2 h-full rounded-tl-[30px] rounded-bl-[30px]">
         <div class="h-full w-[95%] flex items-start flex-col gap-3 relative">
 
@@ -20,8 +20,7 @@
             </div>
 
             <div class="w-5/6">
-              <p class="color-gray-opacity-06 font-family-2">Lorem ipsum dolor sit amet, consectetuipisicing elit, sed do eiusmod tempor
-                incididunt ut labore et dolore magna aliqut enim ad minim </p>
+              <p class="color-gray-opacity-06 font-family-2">{{ recipe[index]?.description ?? '' | substring: 140 }}</p>
             </div>
 
             <div class="flex gap-2">
@@ -57,13 +56,13 @@
                 [style.background-image]="'url('+path_image+'/users/'+recipe[index]?.User?.profile+')'"
               ></div>
               <div>
-                <h3 class="font-semibold italic capitalize font-family-2">{{ recipe[index]?.User?.full_name }}</h3>
-                <p class="color-gray-opacity-06" *ngIf="recipe[index]">{{ recipe[index]?.createdAt ?? '' | date: 'MMM dd, yyyy' }}</p>
+                <h3 class="font-semibold text-[18px] italic capitalize font-family-2">{{ recipe[index]?.User?.full_name }}</h3>
+                <p class="color-gray-opacity-06 text-[15px]" *ngIf="recipe[index]">{{ recipe[index]?.createdAt ?? '' | date: 'MMM dd, yyyy' }}</p>
               </div>
             </div>
 
             <div class="px-[25px] active:scale-[0.9] duration-300 ease-in-out flex items-center gap-10 bg-black rounded-[15px] cursor-pointer">
-              <p class="text-white font-family-2 capitalize text-[14px]">view repices</p>
+              <p class="text-white font-family-2 capitalize text-[16px]">view repices</p>
               <div class="bg-white rounded-full w-[30px] h-[30px] flex justify-center items-center">
                 <i class="fa-solid fa-play"></i>
               </div>

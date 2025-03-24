@@ -4,6 +4,7 @@
 
 .navbar {
   border-bottom-color: var(--clr-border-header);
+  background-color: var(--clr-white);
 }
 
 .font-family-1 {

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {RouterLink} from "@angular/router";
-import {HeaderModule} from '../../core/models/header.module';
+import {HeaderModel} from '../../core/models/header.model';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +11,7 @@ import {HeaderModule} from '../../core/models/header.module';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
-  pages: HeaderModule[] = [
+  pages: HeaderModel[] = [
     {
       id: 1,
       title: "home",

@@ -1,7 +1,4 @@
-interface Category {
-  category_title: string;
-  category_image: string;
-}
+import {Category} from './Category.model';
 
 interface User {
   full_name: string;
@@ -9,6 +6,7 @@ interface User {
 }
 
 export interface Recipe {
+  id: string;
   Category: Category,
   User: User ,
   title: string,
