@@ -14,5 +14,4 @@ export class RecipesService {
   public getAllRecipes(): Observable<{ data: Recipe[] }> {
     return this.http.get<{ data: Recipe[] }>(`${APP.SERVER_HOST}:${APP.SERVER_PORT}/recipes/`);
   }
-
 }

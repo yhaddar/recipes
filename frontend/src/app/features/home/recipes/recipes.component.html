@@ -1,12 +1,16 @@
-<div class="container mx-auto">
-  <div class="flex gap-5 justify-evenly">
-    @for(recipe of recipes() ?? null; track recipe?.id ?? recipe){
+<div class="container mx-auto mt-[100px]">
+<app-title-description
+  [title]="title"
+  [description]="description"
+></app-title-description>
+  <div class="flex gap-5 justify-center flex-wrap">
+    @for(recipe of recipes; track recipe?.id){
       <div class="w-[400px] my-4">
         <app-recipe
-          [recipe]="recipe"
+          [recipe]="signal(recipe)"
           [path_image]="path_image"
         ></app-recipe>
-    </div>
+      </div>
     }
   </div>
 </div>

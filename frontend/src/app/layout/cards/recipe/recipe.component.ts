@@ -1,4 +1,4 @@
-import {Component, Input, signal} from '@angular/core';
+import {Component, Input, OnInit, signal} from '@angular/core';
 import {SubstringPipe} from '../../../shared/pipes/substring.pipe';
 import {NgOptimizedImage} from '@angular/common';
 import {RouterLink} from '@angular/router';
