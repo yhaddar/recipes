@@ -5,6 +5,7 @@
 @import "./app/features/home/hero/hero.component.css";
 @import "./app/layout/header/header.component.css";
 @import "./app/features/home/category/category.component.css";
+@import "primeicons/primeicons.css";
 
 :root {
   --clr-border-header: rgba(0, 0, 0, 0.1);

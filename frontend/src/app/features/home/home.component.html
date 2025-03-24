@@ -6,7 +6,7 @@
     <app-category [categories]="categories()" [path_image]="path_image"></app-category>
   </section>
   <section>
-    <app-recipes [recipes]="recipes()" [path_image]="path_image" ></app-recipes>
+    <app-recipes [recipes]="recipes()" [path_image]="path_image" (page)="receiveMessage($event)"></app-recipes>
   </section>
 }
 @else {

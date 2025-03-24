@@ -18,3 +18,10 @@ export interface Recipe {
   category_id: string,
   createdAt: string,
 }
+
+export interface RecipeResponse {
+  data: Recipe[] | null,
+  page: number,
+  lastPage: number,
+  totalItems: number,
+}

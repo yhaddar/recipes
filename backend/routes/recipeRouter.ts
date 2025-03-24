@@ -18,8 +18,8 @@ const storage = multer.diskStorage({
 
 const upload: Multer = multer({ storage });
 
-router.get("/", async (req: Request, res: Response): Promise<any> => {
-    return await recipeController.getAllRecipes(res);
+router.get("", async (req: Request, res: Response): Promise<any> => {
+    return await recipeController.getAllRecipes(req, res);
 });
 
 router.post("/add", upload.single("image"), async (req: Request, res: Response) => {

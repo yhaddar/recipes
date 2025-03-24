@@ -4,19 +4,32 @@ import {RecipesDTO} from "../DTO/recipesDTO";
 import Recipe from "../models/recipe";
 import Category from "../models/category";
 import User from "../models/user";
+import {RecipeResponse} from "../response/recipeResponse";
 
 export class RecipeController {
 
-    public async getAllRecipes(res: Response): Promise<any> {
+    public async getAllRecipes(req: Request, res: Response): Promise<any> {
         try {
 
-            const AllRecipes: Recipes[] = await Recipes.findAll({
+            const { page, size } = req.query;
+
+            const AllRecipes = await Recipes.findAndCountAll({
                 include: [
-                    {model: Category, attributes: ['category_title', 'category_image']},
-                    {model: User, attributes: ['full_name', 'profile']}
-                ]
+                        {model: Category, attributes: ['category_title', 'category_image']},
+                        {model: User, attributes: ['full_name', 'profile']}
+                    ],
+                    limit: Number(size),
+                    offset: Number(page) * Number(size),
+                    order: [['createdAt', 'DESC']]
             });
-            return res.status(200).json({data: AllRecipes});
+
+            const recipeResponse = new RecipeResponse();
+            recipeResponse.page = Number(page);
+            recipeResponse.totalItems = Number(AllRecipes.count);
+            recipeResponse.lastPage = Math.ceil(AllRecipes.count / Number(size));
+            recipeResponse.recipes = AllRecipes.rows;
+
+            return res.status(200).json(recipeResponse.toString());
 
         } catch (err) {
 

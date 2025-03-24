@@ -8,19 +8,19 @@
             <div class="bg-white flex gap-1 items-center capitalize w-auto px-3 rounded-[14px]">
               <div class="w-[54px] p-2">
                 <img
-                  src="assets/images/recipe.png"
+                  ngSrc="assets/images/recipe.png"
                   alt="recipe"
-                />
+                  height="512" width="512"/>
               </div>
               <p class="font-family-2">hot recipe</p>
             </div>
 
             <div class="w-[70%]">
-              <h1 class="text-[50px] font-semibold first-letter:capitalize">{{ recipe[index]?.title }}</h1>
+              <h1 class="text-[50px] font-semibold first-letter:capitalize">{{ recipe?.data?.[index]?.title }}</h1>
             </div>
 
             <div class="w-5/6">
-              <p class="color-gray-opacity-06 font-family-2">{{ recipe[index]?.description ?? '' | substring: 200 }}</p>
+              <p class="color-gray-opacity-06 font-family-2">{{ recipe?.data?.[index]?.description ?? '' | substring: 200 }}</p>
             </div>
 
             <div class="flex gap-2">
@@ -32,18 +32,18 @@
                     alt="recipe"
                     height="512" width="512"/>
                 </div>
-                <p class="font-family-2 color-gray-opacity-06 time-color lowercase">{{ recipe[index]?.prep_time }} min</p>
+                <p class="font-family-2 color-gray-opacity-06 time-color lowercase">{{ recipe?.data?.[index]?.prep_time }} min</p>
               </div>
               <div class="time-container flex gap-1 items-center capitalize w-auto px-3 rounded-[14px]">
                 <div class="w-[54px] p-2">
                   <img
-                    [ngSrc]="path_image+'/categories/'+recipe[index]?.Category?.category_image"
+                    [ngSrc]="path_image+'/categories/'+recipe?.data?.[index]?.Category?.category_image"
                     alt="recipe"
                     height="512"
                     width="512"
                   />
                 </div>
-                <p class="font-family-2 color-gray-opacity-06">{{ recipe[index]?.Category?.category_title }}</p>
+                <p class="font-family-2 color-gray-opacity-06">{{ recipe?.data?.[index]?.Category?.category_title }}</p>
               </div>
 
             </div>
@@ -53,11 +53,11 @@
             <div class="flex gap-3 items-center">
               <div
                 class="w-[70px] h-[70px] bg-cover bg-no-repeat bg-center bg-border-box rounded-full"
-                [style.background-image]="'url('+path_image+'/users/'+recipe[index]?.User?.profile+')'"
+                [style.background-image]="'url('+path_image+'/users/'+recipe?.data?.[index]?.User?.profile+')'"
               ></div>
               <div>
-                <h3 class="font-semibold text-[18px] italic capitalize font-family-2">{{ recipe[index]?.User?.full_name }}</h3>
-                <p class="color-gray-opacity-06 text-[15px]" *ngIf="recipe[index]">{{ recipe[index]?.createdAt ?? '' | date: 'MMM dd, yyyy' }}</p>
+                <h3 class="font-semibold text-[18px] italic capitalize font-family-2">{{ recipe?.data?.[index]?.User?.full_name }}</h3>
+                <p class="color-gray-opacity-06 text-[15px]" *ngIf="recipe?.data?.[index]">{{ recipe?.data?.[index]?.createdAt ?? '' | date: 'MMM dd, yyyy' }}</p>
               </div>
             </div>
 
@@ -73,8 +73,8 @@
       </div>
       <div class="w-1/2 h-full">
         <img
-          [src]="path_image+'/recipes/'+recipe[index]?.image"
-          [alt]="recipe[index]?.title"
+          [src]="path_image+'/recipes/'+recipe?.data?.[index]?.image"
+          [alt]="recipe?.data?.[index]?.title"
           class="w-full h-full rounded-tr-[30px] rounded-br-[30px]"
         />
       </div>

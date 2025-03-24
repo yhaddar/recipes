@@ -3,8 +3,21 @@
   [title]="title"
   [description]="description"
 ></app-title-description>
+  <div class="w-[80%] mx-auto flex justify-end">
+    <div class="flex items-center gap-1">
+      <button (click)="decrement()" [disabled]="page_default() === 0">
+        <i class="pi pi-angle-left duration-300 hover:scale-[0.9] cursor-pointer" style="font-size: 25px"></i>
+      </button>
+      <div class="">
+        <span class="font-family-2">{{ recipes!.page + 1 || 1 }}/{{ recipes?.lastPage || 1 }}</span>
+      </div>
+      <button [disabled]="recipes?.lastPage === page_default() + 1" (click)="increment()">
+        <i class="pi pi-angle-right duration-300 hover:scale-[0.9] cursor-pointer" style="font-size: 25px"></i>
+      </button>
+    </div>
+  </div>
   <div class="flex gap-5 justify-center flex-wrap">
-    @for(recipe of recipes; track recipe?.id){
+    @for(recipe of recipes?.data; track recipe?.id){
       <div class="w-[400px] my-4">
         <app-recipe
           [recipe]="signal(recipe)"
