@@ -6,13 +6,15 @@
 @import "./app/layout/header/header.component.css";
 @import "./app/features/home/category/category.component.css";
 @import "primeicons/primeicons.css";
+@import "./app/layout/learn-more/learn-more.component.css";
 
 :root {
   --clr-border-header: rgba(0, 0, 0, 0.1);
-  --clr-hero-component: #E7FAFE;
+  --clr-primary: #E7FAFE;
   --clr-bg-time: rgba(0, 0, 0, 0.05);
   --clr-text-opacity-06: rgba(0, 0, 0, 0.6);
   --clr-white: #FFFFFFFF;
+  --clr-border-secondary: #EFEFEF;
 
   --font-family-1: "Iansui";
   --font-family-2: "Winky Sans";
@@ -37,7 +39,14 @@
 }
 
 .bg-primary {
-  background-color: var(--clr-hero-component);
+  background-color: var(--clr-primary);
 }
 
+.border-primary {
+  border-color: var(--clr-primary) !important;
+}
+
+.border-secondary {
+  border-color: var(--clr-border-secondary);
+}
 

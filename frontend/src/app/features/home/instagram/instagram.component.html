@@ -1,0 +1,21 @@
+<div class="container mx-auto">
+  <app-title-description
+    [title]="'Check out @foodieland on Instagram'"
+    [description]="'Lorem ipsum dolor sit amet, consectetuipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqut enim ad minim '"
+  ></app-title-description>
+
+  <div class="w-full h-full py-15 bg-primary rounded-[30px]">
+    <div class="w-full h-auto flex justify-evenly">
+      @for (post of posts; track post) {
+        <div class="h-[446px] w-[290px]">
+          <img [ngSrc]="'assets/images/'+post+'.png'" height="446" width="290" priority alt="post instagram"
+               class="w-full h-full"/>
+        </div>
+      }
+    </div>
+    <div class="flex justify-center mt-7">
+      <app-button-black [title]="'visit our instagram'" [icon]="'fa-brands fa-instagram'"></app-button-black>
+
+    </div>
+  </div>
+</div>

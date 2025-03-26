@@ -1,10 +1,9 @@
-import {Component, inject, Input, OnInit} from '@angular/core';
+import {Component, inject, Input, OnInit, signal} from '@angular/core';
 import {Category} from '../../../core/models/Category.model';
-import { CategoriesService } from '../../../core/services/categories.service';
 import {Carousel} from 'primeng/carousel';
-import {Button} from 'primeng/button';
 import {PrimeTemplate} from 'primeng/api';
 import {NgOptimizedImage} from '@angular/common';
+import {CategoriesService} from '../../../core/services/categories.service';
 
 @Component({
   selector: 'app-category',
@@ -16,7 +15,26 @@ import {NgOptimizedImage} from '@angular/common';
   templateUrl: './category.component.html',
   styleUrl: './category.component.css'
 })
-export class CategoryComponent {
-  @Input() categories!: (Category | null)[];
+export class CategoryComponent implements OnInit {
   @Input() path_image!: string;
+
+  private categoriesService: CategoriesService = inject(CategoriesService);
+
+  protected loading = signal<boolean>(true);
+  protected categories = signal<Category[] | []>([]);
+
+  ngOnInit(): void {
+    this.loading.set(true);
+
+    this.categoriesService.getAllCategories().subscribe({
+      next: (res: { data: Category[] }) => {
+        this.categories.set(res.data);
+        this.loading.set(false);
+      },
+      error: (err) => {
+        console.log(err)
+        this.loading.set(true);
+      }
+    });
+  }
 }
