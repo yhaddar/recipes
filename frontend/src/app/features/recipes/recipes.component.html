@@ -1,0 +1,33 @@
+<section>
+    <app-hero-component
+            [title]="'all recipes'"
+            [description]="'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore'"></app-hero-component>
+</section>
+
+<section class="mt-[60px]">
+    <div class="container mx-auto">
+        <div class="flex justify-center gap-[20px]">
+            <!--            @for(category of categories(); track category){-->
+            <!--                <button class="font-family-2 capitalize text-[20px] py-3 border px-8">{{ category.category_title }}</button>-->
+            <!--            }-->
+
+            <p-carousel [value]="categories()" [numVisible]="8" [numScroll]="1" [circular]="false">
+                <ng-template let-category #item>
+                    <div class="flex justify-evenly">
+                    <button class="font-family-2 capitalize text-[20px] py-3 border-1 px-8 rounded-[5px] category-hover duration-300 easy-in-out active:scale-[0.9] cursor-pointer">{{ category.category_title }}</button>
+                </div>
+                </ng-template>
+            </p-carousel>
+        </div>
+    </div>
+</section>
+
+<section class="mt-[100px]">
+    <app-recipes2 [recipes]="recipes()" [path_image]="path_image" [showTitle]="false"></app-recipes2>
+</section>
+
+<section class="my-[100px]">
+    <div>
+        <h1>pagination</h1>
+    </div>
+</section>

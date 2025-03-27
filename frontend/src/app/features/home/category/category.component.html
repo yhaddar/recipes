@@ -1,7 +1,7 @@
 <div class="container mx-auto">
   <div class="mx-auto">
     <p-carousel [value]="categories()" [numVisible]="8" [numScroll]="1" [circular]="true" [autoplayInterval]="3000">
-      <ng-template pTemplate="item" let-category let-i="index">
+      <ng-template let-category #item let-i="index">
         <div class=" rounded-sm w-[150px] flex justify-between flex-col items-center py-2 px-3">
           <div class="w-[90px] h-[100px]">
             <img

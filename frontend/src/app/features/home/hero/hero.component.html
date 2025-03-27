@@ -37,10 +37,9 @@
               <div class="time-container flex gap-1 items-center capitalize w-auto px-3 rounded-[14px]">
                 <div class="w-[54px] p-2">
                   <img
-                    [ngSrc]="path_image+'/categories/'+recipe?.data?.[index]?.Category?.category_image"
+                    [src]="path_image+'/categories/'+recipe?.data?.[index]?.Category?.category_image"
                     alt="recipe"
-                    height="512"
-                    width="512"
+                    class="w-full h-full"
                   />
                 </div>
                 <p class="font-family-2 color-gray-opacity-06">{{ recipe?.data?.[index]?.Category?.category_title }}</p>

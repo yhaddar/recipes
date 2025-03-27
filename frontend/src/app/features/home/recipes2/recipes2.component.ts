@@ -17,5 +17,6 @@ import {RecipeResponse} from '../../../core/models/recipes.model';
 export class Recipes2Component {
   @Input() recipes!: RecipeResponse | null;
   @Input() path_image!: string;
+  @Input() showTitle: boolean = true;
   protected readonly signal = signal;
 }

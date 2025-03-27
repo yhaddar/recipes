@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit, signal} from '@angular/core';
 import {Recipe, RecipeResponse} from '../../../core/models/recipes.model';
 import {NgIf, NgOptimizedImage} from '@angular/common';
 import {DatePipe} from '../../../shared/pipes/date.pipe';
@@ -20,5 +20,5 @@ import {ButtonBlackComponent} from '../../../layout/Buttons/button-black/button-
 export class HeroComponent {
   @Input() recipe!: RecipeResponse | null;
   @Input() path_image!: string;
-  public index: number = 0;
+  protected index: number = 0;
 }

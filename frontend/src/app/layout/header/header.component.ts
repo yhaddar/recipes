@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import {RouterLink} from "@angular/router";
-import {HeaderModel} from '../../core/models/header.model';
 
 @Component({
   selector: 'app-header',
@@ -11,33 +10,7 @@ import {HeaderModel} from '../../core/models/header.model';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
-  pages: HeaderModel[] = [
-    {
-      id: 1,
-      title: "home",
-      path: "/"
-    },
-    {
-      id: 2,
-      title: "recipes",
-      path: "/recipes",
-    },
-    {
-      id: 3,
-      title: "blog",
-      path: "/blog",
-    },
-    {
-      id: 4,
-      title: "contact",
-      path: "/contact",
-    },
-    {
-      id: 5,
-      title: "about us",
-      path: "/about"
-    }
-  ];
+  pages: string[] = ["home", "recipes", "blogs", "contact", "about us"];
   icons: string[] = ["fa-facebook-f", "fa-twitter", "fa-instagram"];
   public logo: string = "foodileand.";
 }

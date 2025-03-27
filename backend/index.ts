@@ -10,6 +10,7 @@ import cors = require("cors");
 
 const app: Express = express();
 dotenv.config();
+app.use(cors());
 
 app.use(express.json());
 app.use(express.static("./public"));
@@ -17,7 +18,6 @@ app.use(express.static("./public"));
 app.use("/recipes", RecipesRoutes);
 app.use(UserRoutes);
 app.use("/category", CategoryRoutes);
-app.use(cors())
 
 sequelize.authenticate().then(r => console.log(r));
 

@@ -7,6 +7,7 @@
 @import "./app/features/home/category/category.component.css";
 @import "primeicons/primeicons.css";
 @import "./app/layout/learn-more/learn-more.component.css";
+@import "./app/features/recipes/recipes.component.css";
 
 :root {
   --clr-border-header: rgba(0, 0, 0, 0.1);
