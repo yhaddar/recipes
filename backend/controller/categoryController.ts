@@ -1,8 +1,16 @@
 import { Response, Request } from "express";
 import {CategoryDTO} from "../DTO/categoryDTO";
 import Category from "../models/category";
+import {CategoryRepository} from "../Repository/CategoryRepository";
 
 export class CategoryController {
+
+    private categoryRepository: CategoryRepository;
+
+    public constructor() {
+        this.categoryRepository = new CategoryRepository();
+    }
+
     public async setCategory(res: Response, req: Request, file_name: string): Promise<any> {
         try{
 
@@ -27,9 +35,10 @@ export class CategoryController {
     
     public async getAllCategories(res: Response): Promise<any> {
         try{
-            
-            const Allcategories: Category[] = await Category.findAll();
-            return res.status(200).json({ data: Allcategories });
+
+            const [AllCategories] = await this.categoryRepository.getAllCategoryWithCounts();
+
+            return res.status(200).json({ data: AllCategories });
             
         }catch(err){
             return res.status(500).json({ error: (err as Error).message })

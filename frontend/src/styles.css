@@ -16,6 +16,7 @@
   --clr-text-opacity-06: rgba(0, 0, 0, 0.6);
   --clr-white: #FFFFFFFF;
   --clr-border-secondary: #EFEFEF;
+  --clr-border: #000000;
 
   --font-family-1: "Iansui";
   --font-family-2: "Winky Sans";
@@ -44,7 +45,7 @@
 }
 
 .border-primary {
-  border-color: var(--clr-primary) !important;
+  border-color: var(--clr-border) !important;
 }
 
 .border-secondary {

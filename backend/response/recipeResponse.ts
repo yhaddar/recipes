@@ -3,7 +3,7 @@ import Recipe from "../models/recipe";
 export class RecipeResponse {
     private _page!: number;
     private _totalItems!: number;
-    private _recipes!: Recipe[];
+    private _recipes!: Recipe[] | unknown[];
     private _lastPage!: number;
 
 
@@ -23,11 +23,11 @@ export class RecipeResponse {
         this._totalItems = value;
     }
 
-    get recipes(): Recipe[] {
+    get recipes(): Recipe[] | unknown[] {
         return this._recipes;
     }
 
-    set recipes(value: Recipe[]) {
+    set recipes(value: Recipe[] | unknown[]) {
         this._recipes = value;
     }
 

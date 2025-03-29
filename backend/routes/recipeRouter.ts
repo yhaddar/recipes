@@ -24,6 +24,14 @@ router.get("", async (req: Request, res: Response): Promise<any> => {
 
 router.post("/add", upload.single("image"), async (req: Request, res: Response) => {
     return await recipeController.setRecipe(req, res, file_name);
+});
+
+router.get("/filter", async (req: Request, res: Response) => {
+    return await recipeController.getRecipeWithCategory(req, res);
+});
+
+router.get("/search", async (req: Request, res: Response) => {
+    return await recipeController.searchForRecipe(req, res);
 })
 
 export default router;

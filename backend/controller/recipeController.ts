@@ -5,22 +5,30 @@ import Recipe from "../models/recipe";
 import Category from "../models/category";
 import User from "../models/user";
 import {RecipeResponse} from "../response/recipeResponse";
+import {RecipeRepository} from "../Repository/RecipeRepository";
+import {CategoryRepository} from "../Repository/CategoryRepository";
 
 export class RecipeController {
+
+    private recipeRepository: RecipeRepository;
+
+    public constructor() {
+        this.recipeRepository = new RecipeRepository();
+    }
 
     public async getAllRecipes(req: Request, res: Response): Promise<any> {
         try {
 
-            const { page, size } = req.query;
+            const {page, size} = req.query;
 
             const AllRecipes = await Recipes.findAndCountAll({
                 include: [
-                        {model: Category, attributes: ['category_title', 'category_image']},
-                        {model: User, attributes: ['full_name', 'profile']}
-                    ],
-                    limit: Number(size),
-                    offset: Number(page) * Number(size),
-                    order: [['createdAt', 'DESC']]
+                    {model: Category, attributes: ['category_title', 'category_image']},
+                    {model: User, attributes: ['full_name', 'profile']}
+                ],
+                limit: Number(size),
+                offset: Number(page) * Number(size),
+                order: [['createdAt', 'DESC']]
             });
 
             const recipeResponse = new RecipeResponse();
@@ -64,6 +72,44 @@ export class RecipeController {
                 throw new Error("failed to creating recipe");
 
         } catch (err) {
+            return res.status(500).json({error: (err as Error).message});
+        }
+    }
+
+    public async getRecipeWithCategory(req: Request, res: Response): Promise<any> {
+        try {
+
+            const { category, size, page } = req.query;
+
+            const offset: number = Number(size) * Number(page);
+            const limit: number = Number(size);
+
+            const [FilterRecipeWithCategory] = await this.recipeRepository.filterRecipeWithCategory(category, limit, offset);
+
+            const [count] = await this.recipeRepository.getCategoryCountRecipe(category);
+
+            const recipeResponse = new RecipeResponse();
+            recipeResponse.page = Number(page);
+            // @ts-ignore
+            recipeResponse.totalItems = Number(count[0]?.recipe_count);
+            recipeResponse.lastPage = Math.ceil(recipeResponse.totalItems / Number(limit));
+            recipeResponse.recipes = FilterRecipeWithCategory;
+
+            return res.status(200).json(recipeResponse.toString());
+
+        }catch(err) {
+            return res.status(500).json({ error: (err as Error).message });
+        }
+    }
+
+    public async searchForRecipe(req: Request, res: Response): Promise<any> {
+        try {
+            const { q } = req.query;
+            const result = this.recipeRepository.searchForRecipe(q);
+
+            return res.status(200).json({ data: result });
+
+        }catch(err) {
             return res.status(500).json({error: (err as Error).message});
         }
     }

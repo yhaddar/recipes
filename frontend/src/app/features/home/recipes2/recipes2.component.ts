@@ -18,5 +18,7 @@ export class Recipes2Component {
   @Input() recipes!: RecipeResponse | null;
   @Input() path_image!: string;
   @Input() showTitle: boolean = true;
+  @Input() withPaginate: boolean = false;
+
   protected readonly signal = signal;
 }

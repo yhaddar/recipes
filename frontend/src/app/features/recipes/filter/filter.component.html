@@ -1,0 +1,29 @@
+<div class="container mx-auto flex justify-center flex-col my-[30px]">
+  <h3 class="font-family-2 text-[23px] capitalize text-center">all categories</h3>
+  <div class="flex flex-col items-center gap-3 mt-5 py-5">
+    <label for="all" class="flex justify-between items-center py-3 px-3 category-hover duration-300 w-[90%] rounded-[5px] easy-in-out active:scale-[0.9] cursor-pointer">
+      <div class="flex gap-3 items-center">
+        <div class="w-[40px] h-auto">
+          <img ngSrc="assets/images/select.png" alt="all" width="512" height="512" />
+        </div>
+        <h3 class="font-family-2 capitalize text-[20px] py-3">all</h3>
+      </div>
+      <input type="radio" name="category" value="-" [(ngModel)]="categoryId" (change)="setCategoryValue()" id="all" class="hidden" />
+      <h3 class="font-family-2 text-[18px] italic">{{ totalItems }}</h3>
+    </label>
+
+    @for(category of categories; track category){
+      <label [for]="category?.id" class="flex justify-between items-center py-3 px-3 category-hover duration-300 w-[90%] rounded-[5px] easy-in-out active:scale-[0.9] cursor-pointer">
+        <div class="flex gap-3 items-center">
+          <div class="w-[50px] h-auto">
+            <img [ngSrc]="path_image+'/categories/'+category?.category_image" [alt]="category?.category_title" width="512" height="512" />
+          </div>
+          <h3 class="font-family-2 capitalize text-[20px] py-3">{{ category.category_title }}</h3>
+        </div>
+        <input type="radio" [value]="category?.id" [(ngModel)]="categoryId" (change)="setCategoryValue()" name="category" [id]="category?.id" class="hidden" />
+        <h3 class="font-family-2 text-[18px] italic">{{ category?.recipe_count }}</h3>
+      </label>
+    }
+
+  </div>
+</div>

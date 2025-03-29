@@ -14,8 +14,7 @@ export class RecipesService {
     "Cache-Control": "no-cache",
   });
 
-  public recipes = signal<(RecipeResponse | null)>(null);
-  public loading = signal<boolean>(true);
+  public loading = signal<boolean>(false);
 
   public getAllRecipes(page: number, size: number): Observable<RecipeResponse> {
     this.loading.set(true);
@@ -27,6 +26,20 @@ export class RecipesService {
       catchError(error => {
         this.loading.set(true);
         throw error;
+      })
+    );
+  }
+
+  public filterRecipeWithCategory(category_id: string, page: number, size: number){
+    this.loading.set(true);
+    return this.http.get<RecipeResponse>(`${APP.SERVER_HOST}:${APP.SERVER_PORT}/recipes/filter?category=${category_id}&page=${page}&size=${size}`).pipe(
+      tap((recipe: RecipeResponse) => {
+        this.loading.set(false);
+        return recipe;
+      }),
+      catchError(err => {
+        this.loading.set(false);
+        throw err;
       })
     );
   }
