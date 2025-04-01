@@ -3,7 +3,7 @@ import {TitleDescriptionComponent} from '../../../layout/title-description/title
 import {
   RecipeWithoutBackgroundComponent
 } from '../../../layout/cards/recipe-without-background/recipe-without-background.component';
-import {RecipeResponse} from '../../../core/models/recipes.model';
+import {Recipe, RecipeResponse} from '../../../core/models/recipes.model';
 
 @Component({
   selector: 'app-recipes2',
@@ -19,6 +19,8 @@ export class Recipes2Component {
   @Input() path_image!: string;
   @Input() showTitle: boolean = true;
   @Input() withPaginate: boolean = false;
+
+  @Input() title!: string;
 
   protected readonly signal = signal;
 }

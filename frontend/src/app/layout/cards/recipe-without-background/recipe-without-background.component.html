@@ -1,7 +1,7 @@
-<div class="w-full h-[460px] rounded-[20px] relative hover-card duration-500 cursor-pointer easy-in-out">
+<div class="w-full h-[460px] rounded-[20px] relative">
   <div class="w-[100%] h-[250px] rounded-t-[20px] bg-cover bg-center bg-border-box bg-no-repeat" [style.background-image]="'url('+path_image+'/recipes/'+recipe()?.image+')'"></div>
   <div class="w-[90%] mx-auto my-3">
-    <a routerLink="#" class="capitalize font-family-2 text-[22px]">{{ recipe()?.title | substring: 35 }}</a>
+    <a routerLink="/recipe/{{ recipe()?.id }}" class="capitalize font-family-2 text-[22px]">{{ recipe()?.title | substring: 35 }}</a>
   </div>
   <div class="w-[90%] mx-auto">
     <p>{{ recipe()?.description | substring: 80 }}</p>

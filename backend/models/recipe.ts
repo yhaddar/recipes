@@ -116,6 +116,18 @@ class Recipe extends Model {
     static categoryRelation(models: any){
         this.belongsTo(models.Categories, { foreignKey: 'category_id' });
     }
+
+    static moreInformationRelation(models: any){
+        this.hasOne(models.MoreInformation, { foreignKey: 'moreInformation_id' as 'moreInformation' });
+    }
+
+    static ingredientRelation(models: any){
+        this.hasMany(models.Ingredient, { foreignKey: 'ingredient_id' });
+    }
+
+    static directionRelation(models: any){
+        this.hasMany(models.Direction, { foreignKey: 'recipe_id' });
+    }
 }
 
 export default Recipe;

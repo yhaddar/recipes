@@ -56,7 +56,7 @@
               ></div>
               <div>
                 <h3 class="font-semibold text-[18px] italic capitalize font-family-2">{{ recipe?.data?.[index]?.User?.full_name }}</h3>
-                <p class="color-gray-opacity-06 text-[15px]" *ngIf="recipe?.data?.[index]">{{ recipe?.data?.[index]?.createdAt ?? '' | date: 'MMM dd, yyyy' }}</p>
+                <p class="color-gray-opacity-06 text-[15px] font-family-2" *ngIf="recipe?.data?.[index]">{{ recipe?.data?.[index]?.createdAt ?? '' | date: 'MMM dd, yyyy' }}</p>
               </div>
             </div>
 

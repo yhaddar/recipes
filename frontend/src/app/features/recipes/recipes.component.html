@@ -10,7 +10,7 @@
   </aside>
   <main class="w-[83%] my-[0]">
     <app-pagination [page]="recipes()!.page" [lastPage]="recipes()!.lastPage" (pageChange)="changePage($event)"></app-pagination>
-    <app-recipes2 [recipes]="recipes()" [path_image]="path_image" [showTitle]="false" [withPaginate]="true"></app-recipes2>
+    <app-recipes2 [recipes]="recipes()" [path_image]="path_image" [showTitle]="false" [withPaginate]="true" [title]="'Try this delicious recipe to your day'"></app-recipes2>
   </main>
 </section>
 

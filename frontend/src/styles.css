@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css2?family=Iansui&family=Lobster&family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Iansui&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Lobster&family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap');
 @import "tailwindcss";
 @import "./app/layout/header/header.component.css";
 @import "./app/features/home/hero/hero.component.css";
@@ -17,10 +17,12 @@
   --clr-white: #FFFFFFFF;
   --clr-border-secondary: #EFEFEF;
   --clr-border: #000000;
+  --clr-healty: rgba(53, 115, 85, 1);
 
   --font-family-1: "Iansui";
   --font-family-2: "Winky Sans";
   --font-logo: "Lobster";
+  --font-family-3 : "Josefin Sans";
 
 }
 
@@ -52,3 +54,10 @@
   border-color: var(--clr-border-secondary);
 }
 
+.healty {
+  background-color: var(--clr-healty) !important;
+}
+
+.font-family-3 {
+  font-family: var(--font-family-3), sans-serif;
+}

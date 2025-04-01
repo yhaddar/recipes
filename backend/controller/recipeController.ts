@@ -105,9 +105,40 @@ export class RecipeController {
     public async searchForRecipe(req: Request, res: Response): Promise<any> {
         try {
             const { q } = req.query;
-            const result = this.recipeRepository.searchForRecipe(q);
+            const [result] = await this.recipeRepository.searchForRecipe(q);
 
             return res.status(200).json({ data: result });
+
+        }catch(err) {
+            return res.status(500).json({error: (err as Error).message});
+        }
+    }
+
+    public async getRecipe(req: Request, res: Response): Promise<any> {
+        try{
+
+            const { id } = req.query;
+            const [recipe] = await this.recipeRepository.recipeById(id);
+
+            return res.status(200).json(recipe[0]);
+
+        }catch(err) {
+            return res.status(500).json({error: (err as Error).message});
+        }
+    }
+
+    public async filterRecipeLikeSameCategory(req: Request, res: Response): Promise<any> {
+        try{
+
+            const { category_id, page, size } = req.query;
+
+            const offset: number = Number(page);
+            const limit: number = Number(size);
+
+            const [recipeByCategory] = await this.recipeRepository.recipeByCategory(category_id, limit, offset);
+
+
+            return res.status(200).json({ data: recipeByCategory });
 
         }catch(err) {
             return res.status(500).json({error: (err as Error).message});

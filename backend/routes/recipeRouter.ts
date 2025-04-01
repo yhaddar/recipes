@@ -32,6 +32,15 @@ router.get("/filter", async (req: Request, res: Response) => {
 
 router.get("/search", async (req: Request, res: Response) => {
     return await recipeController.searchForRecipe(req, res);
-})
+});
+
+router.get("/detail", async (req: Request, res: Response) => {
+    return await recipeController.getRecipe(req, res);
+});
+
+router.get("/by-category", async (req: Request, res: Response) => {
+    return await recipeController.filterRecipeLikeSameCategory(req, res);
+});
+
 
 export default router;

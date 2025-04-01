@@ -1,6 +1,6 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {inject, Injectable, signal} from '@angular/core';
-import {Recipe, RecipeResponse} from '../models/recipes.model';
+import {Direction, Ingredient, Recipe, RecipeResponse} from '../models/recipes.model';
 import {APP} from '../../../envirenement/server';
 import {catchError, Observable, tap} from 'rxjs';
 
@@ -10,9 +10,6 @@ import {catchError, Observable, tap} from 'rxjs';
 export class RecipesService {
 
   private http: HttpClient = inject(HttpClient);
-  private httpHeaders = new HttpHeaders({
-    "Cache-Control": "no-cache",
-  });
 
   public loading = signal<boolean>(false);
 
@@ -30,7 +27,7 @@ export class RecipesService {
     );
   }
 
-  public filterRecipeWithCategory(category_id: string, page: number, size: number){
+  public filterRecipeWithCategory(category_id: string, page: number, size: number) {
     this.loading.set(true);
     return this.http.get<RecipeResponse>(`${APP.SERVER_HOST}:${APP.SERVER_PORT}/recipes/filter?category=${category_id}&page=${page}&size=${size}`).pipe(
       tap((recipe: RecipeResponse) => {
@@ -39,6 +36,62 @@ export class RecipesService {
       }),
       catchError(err => {
         this.loading.set(false);
+        throw err;
+      })
+    );
+  }
+
+  public recipeDetail(id: string) {
+    this.loading.set(true);
+    return this.http.get<Recipe>(`${APP.SERVER_HOST}:${APP.SERVER_PORT}/recipes/detail?id=${id}`).pipe(
+      tap((recipe: Recipe) => {
+        this.loading.set(false);
+        return recipe;
+      }),
+      catchError((err) => {
+        this.loading.set(true);
+        throw err;
+      })
+    )
+  }
+
+  public recipeWithCategory(category_id: string, page: number, size: number): Observable<RecipeResponse> {
+    this.loading.set(true);
+    return this.http.get<RecipeResponse>(`${APP.SERVER_HOST}:${APP.SERVER_PORT}/recipes/by-category?category_id=${category_id}&page=${page}&size=${size}`).pipe(
+      tap((recipe: RecipeResponse) => {
+        this.loading.set(false);
+        return recipe;
+      }),
+      catchError((err) => {
+        this.loading.set(true);
+        throw err;
+      })
+    )
+  }
+
+  public getIngredient(recipe_id: any): Observable<{ data: Ingredient[] }> {
+    this.loading.set(true);
+    return this.http.get<{ data: Ingredient[] }>(`${APP.SERVER_HOST}:${APP.SERVER_PORT}/ingredient?recipe_id=${recipe_id}`).pipe(
+      tap((ingredient: { data: Ingredient[] }): { data: Ingredient[] } => {
+        this.loading.set(false);
+        return ingredient;
+      }),
+      catchError(err => {
+        this.loading.set(true);
+        throw err;
+      })
+    );
+  }
+
+  public getDirection(recipe_id: any): Observable<{ data: Direction[] }> {
+    this.loading.set(true);
+    return this.http.get<{ data: Direction[] }>(`${APP.SERVER_HOST}:${APP.SERVER_PORT}/direction?recipe_id=${recipe_id}`).pipe(
+      tap((direction: { data: Direction[] }): { data: Direction[] } => {
+        this.loading.set(false);
+        return direction;
+      }),
+      catchError(err => {
+        this.loading.set(true);
         throw err;
       })
     );
