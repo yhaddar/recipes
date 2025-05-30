@@ -1,1 +1,14 @@
 spring.application.name=recipe
+spring:
+    application:
+        name: recipe
+    datasource:
+        url: jdbc:postgresql://localhost:5432/recipes
+        username: yhaddar
+        password: 3705
+    jpa:
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.PostgreSQLDialet
+        hibernate:
+            ddl-auto: update
