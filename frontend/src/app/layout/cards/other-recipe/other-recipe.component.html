@@ -1,0 +1,7 @@
+<div class="flex gap-2">
+  <div class="w-[50%] h-[120px] rounded-[15px] bg-cover bg-center bg-no-repeat bg-border-box" [style.background-image]="'url('+path_image+'/recipes/'+image+')'"></div>
+  <div class="w-[50%] h-auto">
+    <a routerLink="/recipe/{{ id }}" class="text-[20px] font-family-2">{{ title | substring: 34 }}</a>
+    <p class="font-family-2 color-gray-opacity-06 capitalize italic">by {{ full_name }}</p>
+  </div>
+</div>

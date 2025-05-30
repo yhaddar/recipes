@@ -1,0 +1,10 @@
+{
+  "configurations": [
+      {
+          "name": "Run Spring App",
+          "type": "java",
+          "mainClass": "com.recipes.Application",
+          "workingDirectory": "./"
+      }
+  ]
+}

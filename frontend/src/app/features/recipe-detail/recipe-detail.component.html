@@ -1,0 +1,44 @@
+<app-info-principal
+  [title]="recipe()?.title"
+  [full_name]="recipe()?.User?.full_name"
+  [profile]="recipe()?.User?.profile"
+  [createdAt]="recipe()?.createdAt"
+  [prep_time]="recipe()?.prep_time"
+  [cook_time]="recipe()?.cook_time"
+  [category_image]="recipe()?.Category?.category_image"
+  [category_title]="recipe()?.Category?.category_title"
+  [path_image]="path_image"
+></app-info-principal>
+<section class="my-8">
+  <app-image-nutrition-information
+    [path_image]="path_image"
+    [image]="recipe()?.image"
+    [protein]="recipe()?.Nutrition?.protein"
+    [calories]="recipe()?.Nutrition?.calories"
+    [total_fat]="recipe()?.Nutrition?.total_fat"
+    [cholesterol]="recipe()?.Nutrition?.cholesterol"
+    [description]="recipe()?.Nutrition?.description"
+    [carbohydrate]="recipe()?.Nutrition?.carbohydrate"
+
+  ></app-image-nutrition-information>
+</section>
+
+<section>
+  <div class="container mx-auto">
+    <p class="font-family-2 color-gray-opacity-06 text-[18px] italic">{{ recipe()?.description }}</p>
+  </div>
+</section>
+
+<section>
+  <app-ingredient-direction [ingredients]="ingredients()!.data" [recipes]="recipeWithCategory1()" [path_image]="path_image" [directions]="direction()!.data"></app-ingredient-direction>
+</section>
+
+<section class="my-[100px]">
+  <app-inbox></app-inbox>
+</section>
+
+@if(recipeWithCategory2()){
+
+  <app-recipes2 [recipes]="recipeWithCategory2()" [path_image]="path_image" [showTitle]="true" [withPaginate]="false" [title]="'you may like these recipe too'"></app-recipes2>
+
+}

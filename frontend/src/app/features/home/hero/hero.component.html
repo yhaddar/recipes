@@ -1,0 +1,77 @@
+<div class="pt-[100px]">
+  <div class="container mx-auto">
+    <div class="w-full h-[640px] flex bg-primary rounded-[30px] shadow-lg">
+      <div class="w-1/2 h-full rounded-tl-[30px] rounded-bl-[30px]">
+        <div class="h-full w-[95%] flex items-start flex-col gap-3 relative">
+
+          <div class="w-[90%] flex flex-col items-start absolute top-6 left-6 gap-5">
+            <div class="bg-white flex gap-1 items-center capitalize w-auto px-3 rounded-[14px]">
+              <div class="w-[54px] p-2">
+                <img
+                  ngSrc="assets/images/recipe.png"
+                  alt="recipe"
+                  height="512" width="512"/>
+              </div>
+              <p class="font-family-2">hot recipe</p>
+            </div>
+
+            <div class="w-[70%]">
+              <h1 class="text-[50px] font-semibold first-letter:capitalize">{{ recipe?.data?.[index]?.title }}</h1>
+            </div>
+
+            <div class="w-5/6">
+              <p class="color-gray-opacity-06 font-family-2">{{ recipe?.data?.[index]?.description ?? '' | substring: 200 }}</p>
+            </div>
+
+            <div class="flex gap-2">
+
+              <div class="time-container flex gap-1 items-center capitalize w-auto px-3 rounded-[14px]">
+                <div class="w-[54px] p-2">
+                  <img
+                    ngSrc="assets/images/clock.png"
+                    alt="recipe"
+                    height="512" width="512"/>
+                </div>
+                <p class="font-family-2 color-gray-opacity-06 time-color lowercase">{{ recipe?.data?.[index]?.prep_time }} min</p>
+              </div>
+              <div class="time-container flex gap-1 items-center capitalize w-auto px-3 rounded-[14px]">
+                <div class="w-[54px] p-2">
+                  <img
+                    [src]="path_image+'/categories/'+recipe?.data?.[index]?.Category?.category_image"
+                    alt="recipe"
+                    class="w-full h-full"
+                  />
+                </div>
+                <p class="font-family-2 color-gray-opacity-06">{{ recipe?.data?.[index]?.Category?.category_title }}</p>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="absolute w-[90%] left-6 bottom-14 flex justify-between">
+            <div class="flex gap-3 items-center">
+              <div
+                class="w-[70px] h-[70px] bg-cover bg-no-repeat bg-center bg-border-box rounded-full"
+                [style.background-image]="'url('+path_image+'/users/'+recipe?.data?.[index]?.User?.profile+')'"
+              ></div>
+              <div>
+                <h3 class="font-semibold text-[18px] italic capitalize font-family-2">{{ recipe?.data?.[index]?.User?.full_name }}</h3>
+                <p class="color-gray-opacity-06 text-[15px] font-family-2" *ngIf="recipe?.data?.[index]">{{ recipe?.data?.[index]?.createdAt ?? '' | date: 'MMM dd, yyyy' }}</p>
+              </div>
+            </div>
+
+            <app-button-black [title]="'view repices'" [icon]="'fa-solid fa-play'"></app-button-black>
+
+          </div>
+        </div>
+      </div>
+      <div class="w-1/2 h-full">
+        <img
+          [src]="path_image+'/recipes/'+recipe?.data?.[index]?.image"
+          [alt]="recipe?.data?.[index]?.title"
+          class="w-full h-full rounded-tr-[30px] rounded-br-[30px]"
+        />
+      </div>
+    </div>
+  </div>
+</div>

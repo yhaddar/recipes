@@ -1,0 +1,19 @@
+<section>
+    <app-hero-component
+            [title]="'all recipes'"
+            [description]="'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore'"></app-hero-component>
+</section>
+
+<section class="flex w-full mt-[100px] py-5">
+  <aside class="w-[17%] sticky top-[63px] h-screen overflow-y-auto">
+    <app-filter [categories]="categories()" [totalItems]="recipes()!.totalItems" [path_image]="path_image" (categoryValue)="receiveMessage($event)"></app-filter>
+  </aside>
+  <main class="w-[83%] my-[0]">
+    <app-pagination [page]="recipes()!.page" [lastPage]="recipes()!.lastPage" (pageChange)="changePage($event)"></app-pagination>
+    <app-recipes2 [recipes]="recipes()" [path_image]="path_image" [showTitle]="false" [withPaginate]="true" [title]="'Try this delicious recipe to your day'"></app-recipes2>
+  </main>
+</section>
+
+<section class="mt-[100px]">
+  <app-inbox></app-inbox>
+</section>

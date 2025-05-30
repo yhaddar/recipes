@@ -1,0 +1,31 @@
+<div class="w-full h-[460px] rounded-[20px] relative">
+  <div class="w-[100%] h-[250px] rounded-t-[20px] bg-cover bg-center bg-border-box bg-no-repeat" [style.background-image]="'url('+path_image+'/recipes/'+recipe()?.image+')'"></div>
+  <div class="w-[90%] mx-auto my-3">
+    <a routerLink="/recipe/{{ recipe()?.id }}" class="capitalize font-family-2 text-[22px]">{{ recipe()?.title | substring: 35 }}</a>
+  </div>
+  <div class="w-[90%] mx-auto">
+    <p>{{ recipe()?.description | substring: 80 }}</p>
+  </div>
+  <div class="w-[90%] mx-auto flex justify-center">
+    <div class="w-[90%] flex gap-8 absolute bottom-5 justify-between">
+      <div class="flex gap-2 items-center">
+        <div class="w-[40px] h-[40px]">
+          <img
+            ngSrc="assets/images/clock.png"
+            alt="title"
+            height="512" width="512"/>
+        </div>
+        <h3 class="text-[18px] font-family-2 color-gray-opacity-06">{{ recipe()?.prep_time.toString() }} minute</h3>
+      </div>
+      <div class="flex gap-2 items-center">
+        <div class="w-[40px] h-[40px]">
+          <img
+            [ngSrc]="path_image+'/categories/'+recipe()?.Category?.category_image"
+            alt="title"
+            height="512" width="512"/>
+        </div>
+        <h3 class="text-[18px] font-family-2 color-gray-opacity-06">{{ recipe()?.Category?.category_title }}</h3>
+      </div>
+    </div>
+  </div>
+</div>

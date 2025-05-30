@@ -1,0 +1,12 @@
+<div class="container mx-auto">
+  @if(showTitle){
+    <app-title-description [title]="title" [description]="'Lorem ipsum dolor sit amet, consectetuipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqut enim ad minim '"></app-title-description>
+  }
+  <div class="flex gap-2 my-[30px] flex-wrap">
+    @for(recipe of withPaginate ? recipes?.data : recipes?.data; track recipe){
+      <div class="w-[24%] my-5">
+        <app-recipe-without-background [recipe]="signal(recipe)" [path_image]="path_image"></app-recipe-without-background>
+      </div>
+    }
+  </div>
+</div>

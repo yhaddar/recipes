@@ -1,0 +1,63 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Iansui&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Lobster&family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap');
+@import "tailwindcss";
+@import "./app/layout/header/header.component.css";
+@import "./app/features/home/hero/hero.component.css";
+@import "./app/layout/header/header.component.css";
+@import "./app/features/home/category/category.component.css";
+@import "primeicons/primeicons.css";
+@import "./app/layout/learn-more/learn-more.component.css";
+@import "./app/features/recipes/recipes.component.css";
+
+:root {
+  --clr-border-header: rgba(0, 0, 0, 0.1);
+  --clr-primary: #E7FAFE;
+  --clr-bg-time: rgba(0, 0, 0, 0.05);
+  --clr-text-opacity-06: rgba(0, 0, 0, 0.6);
+  --clr-white: #FFFFFFFF;
+  --clr-border-secondary: #EFEFEF;
+  --clr-border: #000000;
+  --clr-healty: rgba(53, 115, 85, 1);
+
+  --font-family-1: "Iansui";
+  --font-family-2: "Winky Sans";
+  --font-logo: "Lobster";
+  --font-family-3 : "Josefin Sans";
+
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.color-gray-opacity-06 {
+  color: var(--clr-text-opacity-06) !important;
+}
+
+.font-family-2 {
+  font-family: var(--font-family-2), sans-serif !important;
+}
+
+.time-container {
+  background-color: var(--clr-bg-time);
+}
+
+.bg-primary {
+  background-color: var(--clr-primary);
+}
+
+.border-primary {
+  border-color: var(--clr-border) !important;
+}
+
+.border-secondary {
+  border-color: var(--clr-border-secondary);
+}
+
+.healty {
+  background-color: var(--clr-healty) !important;
+}
+
+.font-family-3 {
+  font-family: var(--font-family-3), sans-serif;
+}

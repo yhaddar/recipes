@@ -1,0 +1,18 @@
+<div class="container mx-auto">
+  <div class="w-full h-[500px] bg-primary flex rounded-[30px]">
+    <div class="w-1/2 h-full flex items-center">
+      <div class="flex items-start flex-col w-2/3 ml-10">
+        <h1 class="text-[36px] font-family-2">{{ title }}</h1>
+        <div class="my-6">
+          <p class="color-gray-opacity-06 font-family-2 italic">{{ description }}</p>
+        </div>
+        <app-button-black [title]="'learn more'" [icon]="'fa-solid fa-info'"></app-button-black>
+      </div>
+    </div>
+    <div class="w-1/2 h-full">
+      <div class="flex justify-center h-full items-center relative">
+        <img ngSrc="assets/images/learnmore.png" alt="learn more image" height="512" width="512" priority="true" class="absolute bottom-0" />
+      </div>
+    </div>
+  </div>
+</div>

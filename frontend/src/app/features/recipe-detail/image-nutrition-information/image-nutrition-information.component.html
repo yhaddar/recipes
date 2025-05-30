@@ -1,0 +1,40 @@
+<div class="container mx-auto">
+
+  <div class="flex justify-between items-top gap-6">
+    <div class="w-[70%] h-[600px] rounded-[30px] bg-cover bg-border-box bg-center" [style.background-image]="'url('+path_image+'/recipes/'+image+')'"></div>
+    <div class="bg-primary w-[30%] rounded-[30px] relative">
+      <div class="p-6">
+        <h1 class="text-[24px] font-family-2 capitalize">nutrition information</h1>
+        <div class="py-4 flex justify-between items-center border-b-1 border-primary">
+          <h2 class="font-family-2 color-gray-opacity-06 text-[20px]">calories</h2>
+          <p class="text-[20px] font-family-2">{{ calories ? calories+'kcal' : '-' }}</p>
+        </div>
+        <div class="py-4 flex justify-between items-center border-b-1 border-primary">
+          <h2 class="font-family-2 color-gray-opacity-06 text-[20px]">total fat</h2>
+          <p class="text-[20px] font-family-2">{{ total_fat ? total_fat+'g' : '-' }}</p>
+        </div>
+
+        <div class="py-4 flex justify-between items-center border-b-1 border-primary">
+          <h2 class="font-family-2 color-gray-opacity-06 text-[20px]">protein</h2>
+          <p class="text-[20px] font-family-2">{{ protein ? protein+'g' : '-' }}</p>
+        </div>
+
+        <div class="py-4 flex justify-between items-center border-b-1 border-primary">
+          <h2 class="font-family-2 color-gray-opacity-06 text-[20px]">carbohydrate</h2>
+          <p class="text-[20px] font-family-2">{{ carbohydrate ? carbohydrate+'g' : '-' }}</p>
+        </div>
+
+        <div class="py-4 flex justify-between items-center border-b-1 border-primary">
+          <h2 class="font-family-2 color-gray-opacity-06 text-[20px]">cholesterol</h2>
+          <p class="text-[20px] font-family-2">{{ cholesterol ? cholesterol+'mg' : '-' }}</p>
+        </div>
+
+        <div class="absolute bottom-6 left-0">
+          <p class="text-center font-family-2 color-gray-opacity-06 text-[16px]">{{ description ?? '' }}</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>

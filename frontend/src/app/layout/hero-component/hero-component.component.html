@@ -1,0 +1,15 @@
+<div class="pt-[100px]">
+  <div class="container mx-auto">
+    <div>
+      <h1 class="text-[40px] capitalize text-center font-family-2">{{ title }}</h1>
+      <p class="color-gray-opacity-06 text-center text-[17px]">{{ description }}</p>
+    </div>
+    <div class="my-7 w-[42%] mx-auto flex relative justify-center items-center">
+      <input type="text" placeholder="search recipe..." class="border-1 py-6 w-full outline-0 font-family-2 pl-3 rounded-[15px]" name="search" />
+      <div class="absolute right-1">
+        <app-button-black [title]="'search recipe'" [icon]="'fa-solid fa-magnifying-glass'"></app-button-black>
+      </div>
+    </div>
+  </div>
+
+</div>

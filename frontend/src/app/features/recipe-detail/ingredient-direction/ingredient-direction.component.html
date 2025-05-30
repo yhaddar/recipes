@@ -1,0 +1,73 @@
+<div class="container mx-auto">
+
+  <div class="flex gap-6 py-3 my-[80px]">
+    <div class="w-[70%]">
+
+      <div class="flex flex-col gap-5">
+        <div class="flex">
+          <h3
+            class="capitalize text-[30px] font-family-2 italic relative before:content-[''] before:bottom-0 rounded-[3px] before:absolute before:h-[3px] before:w-full before:bg-black">
+            ingredients</h3>
+        </div>
+        @for (ingredient of ingredients; track ingredient) {
+          <div class="">
+            <h1 class="text-[24px] capitalize font-family-2">{{ ingredient.title }}</h1>
+            <p class="font-family-2 italic color-gray-opacity-06">{{ ingredient.description }}</p>
+          </div>
+          <div class="">
+            <div *ngFor="let ingredient_item of ingredient!.IngredientItem; let i = index"
+                 class="flex gap-3 w-[92%] mx-auto my-3 items-end italic py-5 border-b-1">
+              <p class="font-family-2 text-[20px]">{{ i + 1 }}.</p>
+              <h2 class="font-family-2 text-[18px]">{{ ingredient_item.title }}</h2>
+            </div>
+          </div>
+        }
+      </div>
+
+      <div class="flex flex-col gap-5 mt-[100px]">
+        <div class="flex">
+          <h3
+            class="capitalize text-[30px] font-family-2 italic relative before:content-[''] before:bottom-0 rounded-[3px] before:absolute before:h-[3px] before:w-full before:bg-black">
+            directions</h3>
+        </div>
+        @for (direction of directions; track direction) {
+          <div class="w-[92%] mx-auto py-5 border-b-1">
+            <h2 class="font-family-2 text-[22px]">{{ direction.title }}</h2>
+            <p class="font-family-2 text-[16px] color-gray-opacity-06 italic">{{ direction.description }}.</p>
+            @if (direction.image) {
+              <div class="h-[400px] w-[80%] mx-auto my-8 rounded-[15px] bg-cover bg-center bg-no-repeat bg-border-box"
+                   [style.background-image]="'url('+path_image+'/direction/'+direction.image+')'"></div>
+            }
+          </div>
+        }
+      </div>
+
+    </div>
+    <div class="w-[30%] h-[1200px]">
+      @if (recipes?.data) {
+        <div class="w-[100%] h-auto">
+          <h3 class="text-[20px] capitalize font-family-2">other recipe</h3>
+          <div class="flex flex-col gap-3 py-5">
+            @for (recipe of recipes?.data; track recipe) {
+              <app-other-recipe
+                [title]="recipe!.title"
+                [image]="recipe!.image"
+                [full_name]="recipe!.User!.full_name"
+                [path_image]="path_image"
+                [id]="recipe!.id"
+              ></app-other-recipe>
+            }
+          </div>
+        </div>
+      }
+      <div class="h-[700px] mt-10 bg-center bg-no-repeat bg-cover bg-border-box rounded-[20px]"
+           [style.background-image]="'url(assets/images/healty.jpg)'">
+        <div class="w-[60%] mx-auto pt-[30px]">
+          <p class="font-family-3 text-white text-[30px] italic text-center first-letter:capitalize">don’t forget to eat
+            healthy food</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
