@@ -30,6 +30,8 @@ services:
       - db
     networks:
       - app-network
+    volumes:
+      - ./recipe/logs:/logs
 
 #  recipe_frontend:
 #    container_name: recipe_frontend
