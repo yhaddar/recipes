@@ -1,7 +1,7 @@
-package com.recipes.recipe.Models.Entity;
+package com.recipes.recipe.Model.Entity;
 
 import com.recipes.recipe.Enum.Role;
-import com.recipes.recipe.Models.BaseModel;
+import com.recipes.recipe.Model.BaseModel;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
@@ -16,6 +16,7 @@ import java.util.List;
 @Entity
 @Table(name = "users")
 public class User extends BaseModel {
+
     @Column(unique = false)
     @NotBlank(message = "the first name not be empty")
     @Size(min = 3, max = 10, message = "the first name must be between 3 and 10 characters")

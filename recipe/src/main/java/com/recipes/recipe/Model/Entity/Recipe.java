@@ -1,6 +1,6 @@
-package com.recipes.recipe.Models.Entity;
+package com.recipes.recipe.Model.Entity;
 
-import com.recipes.recipe.Models.BaseModel;
+import com.recipes.recipe.Model.BaseModel;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;

@@ -1,4 +1,4 @@
-package com.recipes.recipe.Models;
+package com.recipes.recipe.Model;
 
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
@@ -7,13 +7,11 @@ import jakarta.persistence.PreUpdate;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.annotations.UuidGenerator;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.UUID;
 
 @AllArgsConstructor

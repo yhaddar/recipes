@@ -1,8 +1,7 @@
-package com.recipes.recipe.Models.Entity;
+package com.recipes.recipe.Model.Entity;
 
-import com.recipes.recipe.Models.BaseModel;
+import com.recipes.recipe.Model.BaseModel;
 import jakarta.persistence.*;
-import jakarta.persistence.Lob;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -17,16 +16,16 @@ import java.util.List;
 @Setter
 @Getter
 @Entity
-@Table(name = "categories")
+@Table(name = "categories", uniqueConstraints = {
+        @UniqueConstraint(columnNames = "title")
+})
 public class Category extends BaseModel {
-    @Column(unique = false, columnDefinition = "TEXT")
+    @Column(unique = false)
     @NotBlank(message = "the image was not be empty")
-    @Lob
     private String image;
 
-    @Column(unique = false)
     @NotBlank(message = "the title was not be empty")
-    @Size(min = 3, max = 20)
+    @Size(min = 3, max = 20, message = "this title must be between 3 and 20 characters")
     private String title;
 
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)

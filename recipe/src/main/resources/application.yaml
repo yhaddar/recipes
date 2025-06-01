@@ -24,3 +24,12 @@ logging:
     com:
       recipes:
         recipe: DEBUG
+
+
+#    bucket: recipesyhaddar
+#aws:
+#  access-key-id: YOUR_ACCESS_KEY
+#  secret-access-key: YOUR_SECRET_KEY
+#  region: us-east-1
+#  bucket: recipesyhaddar
+

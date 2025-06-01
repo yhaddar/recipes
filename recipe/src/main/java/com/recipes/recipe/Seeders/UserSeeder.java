@@ -1,6 +1,6 @@
 package com.recipes.recipe.Seeders;
 
-import com.recipes.recipe.Models.Entity.User;
+import com.recipes.recipe.Model.Entity.User;
 import com.recipes.recipe.Repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
