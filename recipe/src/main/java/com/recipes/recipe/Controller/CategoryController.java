@@ -1,7 +1,9 @@
 package com.recipes.recipe.Controller;
 
 import com.recipes.recipe.DTO.CategoryDTO.CategoryDTORequest;
+import com.recipes.recipe.DTO.CategoryDTO.CategoryUpdateRequest;
 import com.recipes.recipe.Service.CategoryService;
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +34,7 @@ public class CategoryController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<String> update(@ModelAttribute @Valid CategoryDTORequest categoryDTORequest, @PathParam("id") UUID id){
-        return this.categoryService.update(categoryDTORequest, id);
+    public ResponseEntity<?> update(@ModelAttribute @Valid CategoryUpdateRequest categoryUpdateRequest, @PathParam("id") UUID id){
+        return this.categoryService.update(categoryUpdateRequest, id);
     }
 }
