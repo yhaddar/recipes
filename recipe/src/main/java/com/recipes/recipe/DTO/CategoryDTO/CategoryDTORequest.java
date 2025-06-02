@@ -1,4 +1,4 @@
-package com.recipes.recipe.DTO;
+package com.recipes.recipe.DTO.CategoryDTO;
 
 import com.recipes.recipe.Annotation.FileType;
 import com.recipes.recipe.Annotation.Unique;
@@ -11,10 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 @NoArgsConstructor
 @Getter
 @Setter
-@Builder
-public class CategoryDTO {
-    private String id;
-
+public class CategoryDTORequest {
     @Valid
     @NotNull(message = "the image was not be empty")
     @FileType(message = "the type of image invalide, import image with png or jpg or jpeg or webp")

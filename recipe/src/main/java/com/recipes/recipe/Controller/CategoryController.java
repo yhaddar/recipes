@@ -1,6 +1,6 @@
 package com.recipes.recipe.Controller;
 
-import com.recipes.recipe.DTO.CategoryDTO;
+import com.recipes.recipe.DTO.CategoryDTO.CategoryDTORequest;
 import com.recipes.recipe.Service.CategoryService;
 import jakarta.validation.Valid;
 import jakarta.websocket.server.PathParam;
@@ -22,17 +22,17 @@ public class CategoryController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<String> store(@ModelAttribute @Valid CategoryDTO categoryDTO){
-        return this.categoryService.store(categoryDTO);
+    public ResponseEntity<String> store(@ModelAttribute @Valid CategoryDTORequest categoryDTORequest){
+        return this.categoryService.store(categoryDTORequest);
     }
 
     @DeleteMapping("/delete")
-    public ResponseEntity<String> delete(@PathParam("id") UUID id){
+    public ResponseEntity<?> delete(@PathParam("id") UUID id){
         return this.categoryService.delete(id);
     }
 
     @PutMapping("/update")
-    public ResponseEntity<String> update(@ModelAttribute @Valid CategoryDTO categoryDTO, @PathParam("id") UUID id){
-        return this.categoryService.update(categoryDTO, id);
+    public ResponseEntity<String> update(@ModelAttribute @Valid CategoryDTORequest categoryDTORequest, @PathParam("id") UUID id){
+        return this.categoryService.update(categoryDTORequest, id);
     }
 }
