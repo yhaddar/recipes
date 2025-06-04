@@ -14,14 +14,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
 
 @Service
+@EnableAsync
 public class CategoryService {
 
     @Autowired
@@ -51,7 +55,8 @@ public class CategoryService {
 
     }
 
-    public ResponseEntity<String> store(CategoryDTORequest categoryDTORequest) {
+    @Async
+    public CompletableFuture<ResponseEntity<String>> store(CategoryDTORequest categoryDTORequest) {
         try {
 
             MultipartFile cover = categoryDTORequest.getImage();
@@ -65,16 +70,16 @@ public class CategoryService {
             try {
                 this.categoryRepository.save(category);
                 log.info("the category {} wa created", categoryDTORequest.getTitle());
-                return ResponseEntity.status(HttpStatus.CREATED).body("the category was created");
+                return CompletableFuture.completedFuture(ResponseEntity.status(HttpStatus.CREATED).body("the category was created"));
 
             }catch (DataIntegrityViolationException e){
                 log.error("failed to create category with title {}", categoryDTORequest.getTitle());
-                return ResponseEntity.badRequest().body(e.getMessage());
+                return CompletableFuture.completedFuture(ResponseEntity.badRequest().body(e.getMessage()));
             }
 
         }catch(Exception e){
             log.error("error : {}", e.getMessage());
-            return ResponseEntity.internalServerError().body(e.getMessage());
+            return CompletableFuture.completedFuture(ResponseEntity.internalServerError().body(e.getMessage()));
         }
     }
 

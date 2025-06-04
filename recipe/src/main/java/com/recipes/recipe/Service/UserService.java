@@ -1,6 +1,6 @@
 package com.recipes.recipe.Service;
 
-import com.recipes.recipe.DTO.UserDTO;
+import com.recipes.recipe.DTO.UserDTORequest;
 import com.recipes.recipe.Enum.Role;
 import com.recipes.recipe.Model.Entity.User;
 import com.recipes.recipe.Repository.UserRepository;
@@ -18,7 +18,7 @@ public class UserService {
 
     private static final Logger log = LoggerFactory.getLogger(UserService.class);
 
-    public ResponseEntity<String> store(UserDTO userDTO){
+    public ResponseEntity<String> store(UserDTORequest userDTO){
         try {
 
             User user = new User();

@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
 
 @RestController
 @RequestMapping("/api/category")
@@ -24,7 +25,7 @@ public class CategoryController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<String> store(@ModelAttribute @Valid CategoryDTORequest categoryDTORequest){
+    public CompletableFuture<ResponseEntity<String>> store(@ModelAttribute @Valid CategoryDTORequest categoryDTORequest){
         return this.categoryService.store(categoryDTORequest);
     }
 

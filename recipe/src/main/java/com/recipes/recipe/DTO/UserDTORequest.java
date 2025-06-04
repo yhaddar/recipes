@@ -15,7 +15,7 @@ import lombok.*;
 @Getter
 @Setter
 @Builder
-public class UserDTO {
+public class UserDTORequest {
 
     @Valid
 

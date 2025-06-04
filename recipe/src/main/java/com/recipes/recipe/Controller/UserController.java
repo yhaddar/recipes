@@ -1,6 +1,6 @@
 package com.recipes.recipe.Controller;
 
-import com.recipes.recipe.DTO.UserDTO;
+import com.recipes.recipe.DTO.UserDTORequest;
 import com.recipes.recipe.Service.UserService;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
@@ -18,7 +18,7 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/add")
-    public ResponseEntity<String> store(@RequestBody @Valid UserDTO userDTO){
+    public ResponseEntity<String> store(@RequestBody @Valid UserDTORequest userDTO){
         return this.userService.store(userDTO);
     }
 }

@@ -8,13 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-import java.util.Map;
 
-@Component
+//@Component
 public class CategorySeeder implements CommandLineRunner {
 
-    @Autowired
+//    @Autowired
     private CategoryRepository categoryRepository;
 
     private final Logger log = LoggerFactory.getLogger(CategorySeeder.class);
