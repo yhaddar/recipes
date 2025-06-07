@@ -19,7 +19,10 @@ public class CategoryExistValidation implements ConstraintValidator<CategoryExis
     @Override
     public boolean isValid(UUID s, ConstraintValidatorContext constraintValidatorContext) {
 
-        Optional<Category> category = this.categoryRepository.findById(s);
-        return category.isEmpty();
+        if(s  == null){
+            return false;
+        }
+
+        return this.categoryRepository.findById(s).isPresent();
     }
 }

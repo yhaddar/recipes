@@ -59,7 +59,7 @@ public class S3Impl implements S3Service {
             this.s3Client.deleteObject(deleteObjectRequest);
 
        }catch (Exception e){
-           log.error("faile to remove the image : {}", e.getMessage());
+           log.error("failed to remove the image : {}", e.getMessage());
        }
     }
 }

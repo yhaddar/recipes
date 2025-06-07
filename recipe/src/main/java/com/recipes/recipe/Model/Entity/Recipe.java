@@ -2,10 +2,7 @@ package com.recipes.recipe.Model.Entity;
 
 import com.recipes.recipe.Model.BaseModel;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.PositiveOrZero;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,23 +22,21 @@ public class Recipe extends BaseModel {
 
     @Column(unique = false, columnDefinition = "TEXT")
     @NotBlank(message = "the image not be empty")
-    @Lob
     private String image;
 
     @Column(unique = false, columnDefinition = "TEXT")
     @NotBlank(message = "the description was not be empty")
     @Size(min = 20, max = 255, message = "this description must be between 20 and 255 characters")
-    @Lob
     private String description;
 
     @Column(unique = false)
-    @NotBlank(message = "the preparation time was notbe empty")
+    @NotNull(message = "the preparation time was notbe empty")
     @PositiveOrZero
     @Min(1)
     private Integer prep_time;
 
     @Column(unique = false)
-    @NotBlank(message = "the cooking time was notbe empty")
+    @NotNull(message = "the cooking time was not be empty")
     @PositiveOrZero
     @Min(1)
     private Integer cook_time;

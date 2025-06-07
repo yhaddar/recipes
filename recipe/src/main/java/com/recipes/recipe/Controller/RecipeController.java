@@ -50,7 +50,7 @@ public class RecipeController {
     }
 
     @GetMapping("/detail")
-    public ResponseEntity<RecipeDTOResponse> show(@PathParam("id") UUID id){
+    public ResponseEntity<?> show(@PathParam("id") UUID id){
         return this.recipeService.show(id);
     }
 
