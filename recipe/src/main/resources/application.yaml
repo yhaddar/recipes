@@ -1,6 +1,9 @@
 spring:
   application:
     name: recipe
+  servlet:
+    multipart:
+      max-file-size: 10GB
   datasource:
     url: jdbc:postgresql://localhost:5433/recipes
     username: yhaddar

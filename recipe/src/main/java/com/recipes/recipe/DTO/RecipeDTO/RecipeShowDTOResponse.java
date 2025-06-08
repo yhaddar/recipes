@@ -1,6 +1,7 @@
 package com.recipes.recipe.DTO.RecipeDTO;
 
 import com.recipes.recipe.DTO.BaseDTO;
+import com.recipes.recipe.DTO.UserDTO.UserDTOPostResponse;
 import com.recipes.recipe.Model.Entity.Recipe;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
@@ -19,6 +20,7 @@ public class RecipeShowDTOResponse extends BaseDTO {
     private Integer cook_time;
     private String description;
     private String category_title;
+    private UserDTOPostResponse user;
 
     public static RecipeShowDTOResponse EntityToJson(Recipe recipe){
         return RecipeShowDTOResponse.builder()
@@ -29,6 +31,7 @@ public class RecipeShowDTOResponse extends BaseDTO {
             .cook_time(recipe.getCook_time())
             .category_title(recipe.getCategory().getTitle())
             .description(recipe.getDescription())
+            .user(UserDTOPostResponse.EntityToJson(recipe.getUser()))
             .created_at(recipe.getCreated_at())
             .updated_at(recipe.getUpdated_at())
             .build();

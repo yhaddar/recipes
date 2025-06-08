@@ -170,7 +170,7 @@ public class RecipeService {
         try {
 
            try{
-               List<Recipe> recipes = this.recipeRepository.searchByTitleOrDescription(q);
+               List<Recipe> recipes = this.recipeRepository.searchByTitle(q);
 
                if(!recipes.isEmpty()){
                    List<RecipeDTOResponse> recipeDTOResponse = recipes.stream().map(RecipeDTOResponse::EntityToJson).toList();

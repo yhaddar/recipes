@@ -1,6 +1,6 @@
 package com.recipes.recipe.Repository;
 
-import com.recipes.recipe.Model.Entity.Recipe;
+import com.recipes.recipe.Model.Entity.Blog;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -10,9 +10,9 @@ import java.util.List;
 import java.util.UUID;
 
 @Repository
-public interface RecipeRepository extends JpaRepository<Recipe, UUID> {
+public interface BlogRepository extends JpaRepository<Blog, UUID> {
 
-    @Query("SELECT r FROM Recipe r WHERE r.title LIKE %:q%")
-    List<Recipe> searchByTitle(@Param("q") String q);    
+    @Query("SELECT b FROM Blog b WHERE b.title LIKE %:q%")
+    List<Blog> searchBlogWithTitle(@Param("q") String q);
 
 }

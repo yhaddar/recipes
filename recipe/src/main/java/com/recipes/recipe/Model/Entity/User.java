@@ -46,6 +46,12 @@ public class User extends BaseModel {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Recipe> recipes;
 
+    @OneToMany(mappedBy = "user_id", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Blog> blogs;
+
+    @Column(unique = false)
+    private String profile;
+
     public User(){
         this.role = Role.CLIENT;
     }
