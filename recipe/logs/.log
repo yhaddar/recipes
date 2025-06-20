@@ -1878,3 +1878,7 @@ Caused by: org.hibernate.query.sqm.UnknownEntityException: Could not resolve roo
 2025-06-08T16:18:45.162+01:00  INFO 47689 --- [recipe] [http-nio-8081-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2025-06-08T16:18:45.166+01:00  INFO 47689 --- [recipe] [http-nio-8081-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
 2025-06-08T16:18:49.526+01:00  INFO 47689 --- [recipe] [http-nio-8081-exec-2] com.recipes.recipe.Service.BlogService   : this blog with Id : c55919be-c520-44d4-a6ff-f8134e8ffa01 was updated
+2025-06-08T16:22:49.302+01:00  INFO 47689 --- [recipe] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-06-08T16:22:49.308+01:00  INFO 47689 --- [recipe] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-06-08T16:22:49.313+01:00  INFO 47689 --- [recipe] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-06-08T16:22:49.316+01:00  INFO 47689 --- [recipe] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
