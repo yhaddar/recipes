@@ -1,0 +1,37 @@
+spring:
+  application:
+    name: authentication
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: yhaddar
+    password: 3705
+    url: jdbc:postgres://localhost:5432/users
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+server:
+  port: 8085
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://eureka-discovery:8871/eureka/
+      register-with-eureka: true
+      fetch-registry: true
+  instance:
+    prefer-ip-address: true
+    hostname: authentication-service
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+    enabled: true
+  zipkin:
+    tracing:
+      endpoint: http://zipkin:9411/api/v2/spans

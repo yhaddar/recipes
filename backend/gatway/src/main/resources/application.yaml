@@ -1,0 +1,26 @@
+eureka:
+  client:
+    register-with-eureka: false
+    service-url:
+      defaultZone: http://eureka-discovery:8871/eureka/
+spring:
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: authentication
+              uri: http://authentication-service:8085
+              predicates:
+                - Path=/api/v1/user/**
+            - id: recipe
+              uri: http://recipe-service:8081
+              predicates:
+                - Path=/api/v1/recipe/**
+          discovery:
+            locator:
+              enabled: true
+  config:
+    import: optional:configserver:http://localhost:8888
+server:
+  port: 8080
