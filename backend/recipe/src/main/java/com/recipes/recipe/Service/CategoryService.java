@@ -8,6 +8,8 @@ import com.recipes.recipe.Repository.CategoryRepository;
 import com.recipes.recipe.Service.UploadToS3.S3Service;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,11 +30,15 @@ import java.util.concurrent.CompletableFuture;
 @EnableAsync
 public class CategoryService {
 
-    @Autowired
-    private CategoryRepository categoryRepository;
-    @Autowired
-    private S3Service s3Service;
+    CategoryRepository categoryRepository;
+    private final S3Service s3Service;
     private final Logger log = LoggerFactory.getLogger(CategoryService.class);
+
+    public CategoryService(CategoryRepository categoryRepository, S3Service s3Service) {
+        this.categoryRepository = categoryRepository;
+        this.s3Service = s3Service;
+    }
+
 
     public ResponseEntity<?> index(){
 
@@ -50,6 +56,7 @@ public class CategoryService {
                 throw new EntityNotFoundException("new categories will be added soon.");
 
         }catch (EntityNotFoundException e){
+            log.error("{}", e.getMessage());
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
 
@@ -69,7 +76,7 @@ public class CategoryService {
 
             try {
                 this.categoryRepository.save(category);
-                log.info("the category {} wa created", categoryDTORequest.getTitle());
+                log.info("the category {} was created", categoryDTORequest.getTitle());
                 return CompletableFuture.completedFuture(ResponseEntity.status(HttpStatus.CREATED).body("the category was created"));
 
             }catch (DataIntegrityViolationException e){
@@ -151,7 +158,7 @@ public class CategoryService {
 
             }catch (RuntimeException e){
                 log.warn("this category with Id : {} not found", e.getMessage());
-                return ResponseEntity.notFound().build();
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
             }
 
         }catch (Exception e){

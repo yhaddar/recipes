@@ -6,8 +6,6 @@ import com.recipes.recipe.Model.Entity.Recipe;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
-import java.util.UUID;
-
 @EqualsAndHashCode(callSuper = true)
 @AllArgsConstructor
 @NoArgsConstructor

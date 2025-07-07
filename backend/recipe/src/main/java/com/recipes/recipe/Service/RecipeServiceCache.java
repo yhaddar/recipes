@@ -21,7 +21,7 @@ public class RecipeServiceCache {
     @Autowired
     private UserClient userClient;
 
-    @Cacheable(value = "RECIPE_CACHE")
+//    @Cacheable(value = "RECIPE_CACHE")
     public List<RecipeDTOResponse> getRecipeFromCache(){
 
         List<Recipe> recipes = this.recipeRepository.findAll();
@@ -30,12 +30,17 @@ public class RecipeServiceCache {
                     RecipeDTOResponse recipeDTOResponse = RecipeDTOResponse.EntityToJson(recipe);
 
                     UserDTO userDTO = this.userClient.getUser(recipe.getUser());
+                    if(userDTO == null){
+                        throw new NullPointerException("no user found");
+                    }else {
+                        recipeDTOResponse.setFirst_name(userDTO.getFirst_name());
+                        recipeDTOResponse.setLast_name(userDTO.getLast_name());
+                        recipeDTOResponse.setProfile(userDTO.getProfile());
 
-                    recipeDTOResponse.setFirst_name(userDTO.getFirst_name());
-                    recipeDTOResponse.setLast_name(userDTO.getLast_name());
-                    recipeDTOResponse.setProfile(userDTO.getProfile());
+                        return recipeDTOResponse;
 
-                    return recipeDTOResponse;
+                    }
+
 
 
                 }
