@@ -3,7 +3,6 @@ package com.recipes.recipe.Controller;
 import com.recipes.recipe.DTO.CategoryDTO.CategoryDTORequest;
 import com.recipes.recipe.DTO.CategoryDTO.CategoryUpdateRequest;
 import com.recipes.recipe.Service.CategoryService;
-import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +18,7 @@ public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<?> index(){
         return this.categoryService.index();
     }

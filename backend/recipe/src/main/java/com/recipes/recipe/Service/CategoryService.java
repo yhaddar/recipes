@@ -8,11 +8,8 @@ import com.recipes.recipe.Repository.CategoryRepository;
 import com.recipes.recipe.Service.UploadToS3.S3Service;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,9 +18,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 import java.util.concurrent.CompletableFuture;
 
 @Service
@@ -38,6 +33,7 @@ public class CategoryService {
         this.categoryRepository = categoryRepository;
         this.s3Service = s3Service;
     }
+
 
 
     public ResponseEntity<?> index(){
@@ -57,7 +53,9 @@ public class CategoryService {
 
         }catch (EntityNotFoundException e){
             log.error("{}", e.getMessage());
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+            Map<String, String> error = new HashMap<>();
+            error.put("message", e.getMessage());
+            return ResponseEntity.status(HttpStatus.OK).body(error);
         }
 
     }
@@ -81,12 +79,12 @@ public class CategoryService {
 
             }catch (DataIntegrityViolationException e){
                 log.error("failed to create category with title {}", categoryDTORequest.getTitle());
-                return CompletableFuture.completedFuture(ResponseEntity.badRequest().body(e.getMessage()));
+                return CompletableFuture.completedFuture(ResponseEntity.status(HttpStatus.CONFLICT).body("failed to create category with title " + categoryDTORequest.getTitle()));
             }
 
         }catch(Exception e){
-            log.error("error : {}", e.getMessage());
-            return CompletableFuture.completedFuture(ResponseEntity.internalServerError().body(e.getMessage()));
+            log.error("error in the server, try in another time : {}", e.getMessage());
+            return CompletableFuture.completedFuture(ResponseEntity.internalServerError().body("error in the server, try in another time"));
         }
     }
 
@@ -103,23 +101,23 @@ public class CategoryService {
                     this.categoryRepository.delete(category);
 
                     log.info("the category with Id {} was removed", id);
-                    return ResponseEntity.noContent().build();
+                    return ResponseEntity.status(HttpStatus.NO_CONTENT).body("the category was removed");
 
                 }catch(DataIntegrityViolationException e){
 
                     log.error("This category by Id {} cannot be deleted because it is related to several recipes.", id);
-                    return ResponseEntity.badRequest().body("This category cannot be deleted because it is related to several recipes.");
+                    return ResponseEntity.status(HttpStatus.CONFLICT).body("This category cannot be deleted because it is related to several recipes.");
 
                 }
 
             }catch (RuntimeException e){
                 log.error("category not found with Id : {}", id);
-                return ResponseEntity.notFound().build();
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
             }
 
         }catch(Exception e){
-            log.error("failed to remove this category with Id : {}", id);
-            return ResponseEntity.notFound().build();
+            log.error("error in the server, try in another time");
+            return ResponseEntity.internalServerError().body("error in the server, try in another time");
         }
 
     }
@@ -165,6 +163,5 @@ public class CategoryService {
             log.error("failed to update this category with Id : {}", e.getMessage());
             return ResponseEntity.badRequest().body("failed to update this category");
         }
-
     }
 }
