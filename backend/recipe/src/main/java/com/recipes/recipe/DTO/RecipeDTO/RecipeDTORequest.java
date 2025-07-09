@@ -18,7 +18,7 @@ public class RecipeDTORequest {
     @Valid
 
     @NotEmpty(message = "the title was not be empty")
-    @NotBlank(message = "the title was not be null")
+    @NotBlank(message = "the title was not be blank")
     @NotNull(message = "the title was not be null")
     @Pattern(regexp = "^[a-zA-Z-_&\\s]{8,20}$", message = "this title invalid")
     private String title;
@@ -27,19 +27,19 @@ public class RecipeDTORequest {
     @FileType(message = "the type of image invalid, import image with png or jpg or jpeg or webp")
     private MultipartFile image;
 
-    @NotBlank(message = "the description was not be empty")
+    @NotBlank(message = "the description was not be blank")
     @NotNull(message = "the description was not be null")
     @NotEmpty(message = "the description was not be empty")
-    @Pattern(regexp = "^[a-zA-Z0-9.,!?()'\"\\s:&_-]{20,255}$", message = "this description was invalide")
+    @Pattern(regexp = "^[a-zA-Z0-9.,!?()'\"\\s:&_-]{20,255}$", message = "this description was invalid")
     private String description;
 
     @NotNull(message = "the preparation time was not be null")
-    @Min(1)
-    private String prep_time;
+    @Min(value = 1, message = "the preparation time was be au min 1")
+    private Integer prep_time;
 
     @NotNull(message = "the cooking time was not be null")
-    @Min(1)
-    private String cook_time;
+    @Min(value = 1, message = "the cooking time was be au min 1")
+    private Integer cook_time;
 
     @NotNull(message = "the category was not be null")
     @CategoryExist(message = "this category is not exist")

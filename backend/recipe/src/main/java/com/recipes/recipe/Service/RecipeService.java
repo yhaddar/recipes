@@ -73,15 +73,15 @@ public class RecipeService {
                 MultipartFile image = recipeDTORequest.getImage();
                 String file_name = this.s3Service.uploadFile(image, "recipes");
 
-                Category category = this.categoryRepository.findById(recipeDTORequest.getCategory_id()).orElseThrow(() -> new Exception("no category found"));
+                Category category = this.categoryRepository.findById(recipeDTORequest.getCategory_id()).orElseThrow(() -> new RuntimeException("no category found"));
 
                 Recipe recipe = new Recipe();
                 recipe.setTitle(recipeDTORequest.getTitle());
                 recipe.setImage(file_name);
                 recipe.setDescription(recipeDTORequest.getDescription());
                 recipe.setCategory(category);
-                recipe.setPrep_time(Integer.valueOf(recipeDTORequest.getPrep_time()));
-                recipe.setCook_time(Integer.valueOf(recipeDTORequest.getCook_time()));
+                recipe.setPrep_time(recipeDTORequest.getPrep_time());
+                recipe.setCook_time(recipeDTORequest.getCook_time());
 
                 Boolean verifierUser = this.userClient.verifierUser(recipeDTORequest.getUser());
 
@@ -102,7 +102,7 @@ public class RecipeService {
                     }
                 }
 
-            } catch (Exception e) {
+            } catch (RuntimeException e) {
                 log.error("error, ", e);
                 return CompletableFuture.completedFuture(ResponseEntity.ok().body(e.getMessage()));
 

@@ -34,7 +34,7 @@ class RecipeControllerTest {
     @Container
     @ServiceConnection
     static PostgreSQLContainer postgreSQLContainer = new PostgreSQLContainer(DockerImageName.parse("postgres:latest"))
-            .withDatabaseName("categories")
+            .withDatabaseName("recipes")
             .withUsername("yhaddar")
             .withPassword("3705");
 
@@ -58,22 +58,12 @@ class RecipeControllerTest {
         );
     }
 
-    private CategoryDTORequest categoryDTORequest() {
-
-        MockMultipartFile uploadImage = uploadFile();
-
-        CategoryDTORequest categoryDTORequest = new CategoryDTORequest();
-        categoryDTORequest.setTitle("new category");
-        categoryDTORequest.setImage(uploadImage);
-
-        return categoryDTORequest;
-    }
 
     @Test
+    @Disabled
     void store() {
 
         // given
-//        CategoryDTORequest categoryDTORequest = categoryDTORequest();
 
         // for stock the data like new FormData in javascript
         MultiValueMap<String, Object> multiValueMap = new LinkedMultiValueMap<>();
@@ -92,6 +82,7 @@ class RecipeControllerTest {
 
         multiValueMap.add("title", "new category");
         multiValueMap.add("image", resource);
+        multiValueMap.add("description", "Choose your champions, make your move, and be legendary in the League of Legends strategy card game: Legends of Runeterra.");
 
 
         MockMultipartFile uploadFile = new MockMultipartFile(

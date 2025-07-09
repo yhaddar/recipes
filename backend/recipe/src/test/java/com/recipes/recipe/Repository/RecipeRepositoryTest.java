@@ -28,10 +28,7 @@ class RecipeRepositoryTest {
 
     @Container
     @ServiceConnection
-    static PostgreSQLContainer<?> postgreSQLContainer = new PostgreSQLContainer<>(DockerImageName.parse("postgres:latest"))
-            .withDatabaseName("recipes")
-            .withUsername("yhaddar")
-            .withPassword("3705");
+    static PostgreSQLContainer<?> postgreSQLContainer = new PostgreSQLContainer<>(DockerImageName.parse("postgres:latest"));
     @Autowired
     RecipeRepository recipeRepository;
     @Autowired
