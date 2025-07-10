@@ -21,7 +21,7 @@ public class RecipeServiceCache {
     @Autowired
     private UserClient userClient;
 
-//    @Cacheable(value = "RECIPE_CACHE")
+    @Cacheable(value = "RECIPE_CACHE", key = "'all_recipes'")
     public List<RecipeDTOResponse> getRecipeFromCache(){
 
         List<Recipe> recipes = this.recipeRepository.findAll();
@@ -40,8 +40,6 @@ public class RecipeServiceCache {
                         return recipeDTOResponse;
 
                     }
-
-
 
                 }
         ).toList();

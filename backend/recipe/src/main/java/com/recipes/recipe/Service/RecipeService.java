@@ -48,16 +48,16 @@ public class RecipeService {
         try {
             List<RecipeDTOResponse> recipeDTOResponses = this.recipeServiceCache.getRecipeFromCache();
 
-            if (!recipeDTOResponses.isEmpty()) {
+            if (recipeDTOResponses.isEmpty()) {
 
-                return ResponseEntity.ok().body(recipeDTOResponses);
+                throw new RuntimeException("recipes not found");
 
             } else {
-                throw new RuntimeException("no recipes found");
+                return ResponseEntity.ok().body(recipeDTOResponses);
             }
         } catch (RuntimeException e) {
             log.error(e.getMessage());
-            return ResponseEntity.ok().build();
+            return ResponseEntity.status(HttpStatus.OK).body(e.getMessage());
         }
 
 
@@ -97,7 +97,7 @@ public class RecipeService {
                         return CompletableFuture.completedFuture(ResponseEntity.status(HttpStatus.CREATED).body("the recipe was created"));
 
                     } catch (DataIntegrityViolationException e) {
-                        log.warn("failed to created this recipe, {}", e.getMessage());
+                        log.warn("failed to create this recipe.");
                         return CompletableFuture.completedFuture(ResponseEntity.badRequest().body(e.getMessage()));
                     }
                 }
@@ -109,7 +109,8 @@ public class RecipeService {
             }
 
         } catch (NullPointerException e) {
-            return CompletableFuture.completedFuture(ResponseEntity.badRequest().body(e.getMessage()));
+            log.error("NullPointerException, {}", e.getMessage());
+            return CompletableFuture.completedFuture(ResponseEntity.ok().body("NullPointerException " + e.getMessage()));
         }
 
     }
@@ -119,7 +120,7 @@ public class RecipeService {
 
             try {
 
-                Recipe recipe = this.recipeRepository.findById(id).orElseThrow(() -> new RuntimeException("no recipe found"));
+                Recipe recipe = this.recipeRepository.findById(id).orElseThrow(() -> new RuntimeException("recipe not found"));
 
                 MultipartFile image = null;
                 String file_name = null;
@@ -133,9 +134,9 @@ public class RecipeService {
                 if (recipeDTOUpdateRequest.getDescription() != null)
                     recipe.setDescription(recipeDTOUpdateRequest.getDescription());
                 if (recipeDTOUpdateRequest.getPrep_time() != null)
-                    recipe.setPrep_time(Integer.valueOf(recipeDTOUpdateRequest.getPrep_time()));
+                    recipe.setPrep_time(recipeDTOUpdateRequest.getPrep_time());
                 if (recipeDTOUpdateRequest.getCook_time() != null)
-                    recipe.setCook_time(Integer.valueOf(recipeDTOUpdateRequest.getCook_time()));
+                    recipe.setCook_time(recipeDTOUpdateRequest.getCook_time());
                 if (recipeDTOUpdateRequest.getImage() != null) recipe.setImage(file_name);
 
                 this.recipeRepository.save(recipe);
@@ -144,7 +145,7 @@ public class RecipeService {
 
             } catch (RuntimeException e) {
                 log.warn("error : ", e);
-                return ResponseEntity.notFound().build();
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
             }
 
         } catch (Exception e) {
@@ -168,9 +169,9 @@ public class RecipeService {
                     });
 
                     log.info("the recipe with Id : {} was removed", id);
-                    return ResponseEntity.accepted().body("this category was removed");
+                    return ResponseEntity.accepted().body("this recipe was removed");
                 } else
-                    throw new RuntimeException("no recipe found");
+                    throw new RuntimeException("recipe not found");
             } catch (RuntimeException e) {
                 log.error(e.getMessage());
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
@@ -210,12 +211,15 @@ public class RecipeService {
                 RecipeShowDTOResponse recipeDTO = this.recipeServiceCache.getRecipeDetailFromCache(id);
 
 
-                log.info("{}", recipeDTO);
-                return ResponseEntity.ok().body(recipeDTO);
+                if(recipeDTO != null){
+                    log.info("{}", recipeDTO);
+                    return ResponseEntity.ok().body(recipeDTO);
+                }else
+                    throw new RuntimeException("recipe not found");
 
             } catch (RuntimeException e) {
                 log.warn("the recipe with Id : {} not found", id);
-                return ResponseEntity.notFound().build();
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
             }
 
         } catch (Exception e) {

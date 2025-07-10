@@ -1,6 +1,5 @@
 package com.recipes.recipe.DTO.RecipeDTO;
 
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
@@ -23,8 +22,8 @@ public class RecipeDTOUpdateRequest {
     private String description;
 
     @Min(1)
-    private String prep_time;
+    private Integer prep_time;
 
     @Min(1)
-    private String cook_time;
+    private Integer cook_time;
 }
