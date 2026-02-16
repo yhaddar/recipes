@@ -2,35 +2,19 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
-      <profile default="true" name="Default" enabled="true" />
-      <profile name="Maven default annotation processors profile" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <module name="config-server" />
-        <module name="gatway" />
-        <module name="discovery" />
-        <module name="blogs" />
-      </profile>
       <profile name="Annotation profile for recipe" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.38/lombok-1.18.38.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.42/lombok-1.18.42.jar" />
         </processorPath>
         <module name="recipe" />
-        <module name="authentication" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="authentication" options="-parameters" />
-      <module name="blogs" options="-parameters" />
-      <module name="config-server" options="-parameters" />
-      <module name="discovery" options="-parameters" />
-      <module name="gatway" options="-parameters" />
       <module name="recipe" options="-parameters" />
     </option>
   </component>
