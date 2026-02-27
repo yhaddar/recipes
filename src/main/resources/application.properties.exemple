@@ -1,0 +1,15 @@
+spring.application.name=recipe
+spring.jpa.database=mysql
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.datasource.url=jdbc:mysql://localhost:3306/recipes
+spring.datasource.username=
+spring.datasource.password=
+spring.datasource.driver-class-name=com.mysql.jdbc.Driver
+spring.cloud.aws.region.static=
+spring.cloud.aws.credentials.access-key=
+spring.cloud.aws.credentials.secret-key=
+spring.cache.type=redis
+spring.data.redis.password=
+spring.data.redis.host=localhost
+spring.data.redis.port=6379
