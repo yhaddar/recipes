@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class RecipeController {
     @GetMapping("")
     String index(){
-        return "hello world";
+        return "hello from recipe API";
     }
 }
