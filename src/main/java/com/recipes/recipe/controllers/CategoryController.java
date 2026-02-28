@@ -46,9 +46,4 @@ public class CategoryController {
         return this.categoryService.delete(id);
     }
 
-    @GetMapping("/say-hello")
-    public String helloWorld(){
-        return "Hello World";
-    }
-
 }
