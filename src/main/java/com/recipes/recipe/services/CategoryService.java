@@ -39,7 +39,7 @@ public class CategoryService {
     }
 
     @Transactional(rollbackOn = NotFoundException.class)
-    @Cacheable(value = "CATEGORY_SERVICE", key = "'category'")
+//    @Cacheable(value = "CATEGORY_SERVICE", key = "'category'")
     public List<CategoryDTO> index() throws NotFoundException {
         List<Category> category = this.categoryRepository.findAll();
 
@@ -52,7 +52,7 @@ public class CategoryService {
 
     @Async
     @Transactional(rollbackOn = HandlerValidationException.class)
-    @CacheEvict(value = "CATEGORY_SERVICE", key = "'category'")
+//    @CacheEvict(value = "CATEGORY_SERVICE", key = "'category'")
     public CompletableFuture<ResponseEntity<String>> store(CategoryRequest categoryRequest) throws IOException {
 
         String file = categoryRequest.getImage().getOriginalFilename();
@@ -79,7 +79,7 @@ public class CategoryService {
     }
 
     @Transactional(rollbackOn = RuntimeException.class)
-    @CacheEvict(value = "CATEGORY_SERVICE", key = "'category'")
+//    @CacheEvict(value = "CATEGORY_SERVICE", key = "'category'")
     @Async
     public CompletableFuture<ResponseEntity<String>> update(UUID id, @Valid CategoryRequest categoryRequest) throws IOException {
 

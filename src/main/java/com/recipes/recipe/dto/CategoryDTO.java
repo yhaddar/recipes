@@ -1,6 +1,7 @@
 package com.recipes.recipe.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.recipes.recipe.models.Category;
 import lombok.*;
 
