@@ -45,8 +45,8 @@ pipeline {
             echo "start deployement in EC2..."
             withCredentials([sshUserPrivateKey(credentialsId: 'ec2-key', keyFileVariable: 'SSH_KEY')]){
                 sh '''
-                  chmod 400 $SSH_KEY
-                 rsync -avz --exclude '.git' --exclude 'target' -e "ssh -i $SSH_KEY" . ubuntu@ec2-3-84-242-75.compute-1.amazonaws.com:~/app
+                  chmod 400 ${SSH_KEY}
+                 rsync -avz --exclude '.git' --exclude 'target' -e "ssh -i ${SSH_KEY}" . ubuntu@ec2-3-84-242-75.compute-1.amazonaws.com:~/app
                  ssh ubuntu@ec2-3-84-242-75.compute-1.amazonaws.com "
                  sudo systemctl restart recipeapp.service
                  "
