@@ -43,7 +43,7 @@ pipeline {
        stage("Deploy"){
         steps {
             echo "start deployement in EC2..."
-            sshagent(credentials: ['ec2-key']){
+            sshagent(['ec2-key']){
                 sh '''
                  rsync -avz --exclude '.git' --exclude 'target' . ubuntu@ec2-3-84-242-75.compute-1.amazonaws.com:~/app
                  ssh ubuntu@ec2-3-84-242-75.compute-1.amazonaws.com "
