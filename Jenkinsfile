@@ -40,25 +40,21 @@ pipeline {
                 '''
             }
        }
-        stage("Deploy"){
-            steps {
-                echo "start deployment in EC2..."
-                withCredentials([sshUserPrivateKey(credentialsId: 'ec2-key', keyFileVariable: 'SSH_KEY')]) {
-                    sh '''
-                chmod 400 $SSH_KEY
-
-                rsync -avz --exclude '.git' --exclude 'target' \
-                -e "ssh -i $SSH_KEY" . ubuntu@ec2-3-84-242-75.compute-1.amazonaws.com:~/app
-
-                ssh -i $SSH_KEY ubuntu@ec2-3-84-242-75.compute-1.amazonaws.com "
-                    pkill -f recipe-0.0.1-SNAPSHOT.jar || true
-                    cd ~/app
-                    mvn clean package -DskipTests
-                    nohup java -jar target/recipe-0.0.1-SNAPSHOT.jar --spring.profiles.active=prod > app.log 2>&1 &
-                "
+       stage("Deploy"){
+        steps {
+            echo "start deployement in EC2..."
+            withCredentials([sshUserPrivateKey(credentialsId: 'ec2-key', keyFileVariable: 'SSH_KEY')]){
+                sh '''
+                 rsync -avz --exclude '.git' --exclude 'target' . ubuntu@ec2-3-84-242-75.compute-1.amazonaws.com:~/app
+                 ssh ubuntu@ec2-3-84-242-75.compute-1.amazonaws.com "
+                  pkill java || true
+                 cd ~/app
+                 mvn clean package -DskipTests
+                 nohup java -jar target/recipe-0.0.1-SNAPSHOT.jar --spring.profiles.active=prod > app.log 2>&1 &
+                 "
             '''
-                }
             }
         }
+       }
     }
 }
