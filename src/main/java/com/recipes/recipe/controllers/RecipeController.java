@@ -1,14 +1,40 @@
 package com.recipes.recipe.controllers;
 
+import com.recipes.recipe.request.RecipeRequest;
+import com.recipes.recipe.services.RecipeService;
+import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.io.IOException;
+import java.util.concurrent.CompletableFuture;
 
 @RestController
 @RequestMapping("api/recipe")
 public class RecipeController {
+
+    private final RecipeService recipeService;
+
+    @Autowired
+    RecipeController(RecipeService recipeService){
+        this.recipeService = recipeService;
+    }
+
     @GetMapping("")
     String index(){
-        return "hello from recipe API";
+        return this.recipeService.index();
+    }
+
+    @PostMapping(value = "/add", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    /*
+        TODO : this method is not work yet
+     */
+    CompletableFuture<ResponseEntity<String>> store(@Valid RecipeRequest recipeRequest) throws IOException {
+        return this.recipeService.store(recipeRequest);
     }
 }
