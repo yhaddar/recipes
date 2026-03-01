@@ -1,5 +1,6 @@
 package com.recipes.recipe.controllers;
 
+import com.recipes.recipe.dto.RecipeDTO;
 import com.recipes.recipe.request.RecipeRequest;
 import com.recipes.recipe.services.RecipeService;
 import jakarta.validation.Valid;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 @RestController
@@ -26,7 +28,7 @@ public class RecipeController {
     }
 
     @GetMapping("")
-    String index(){
+    List<RecipeDTO> index(){
         return this.recipeService.index();
     }
 

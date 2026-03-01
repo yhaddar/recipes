@@ -1,7 +1,9 @@
 package com.recipes.recipe.services;
 
 import com.recipes.recipe.config.S3Config;
+import com.recipes.recipe.dto.RecipeDTO;
 import com.recipes.recipe.exception.HandlerValidationException;
+import com.recipes.recipe.exception.NotFoundException;
 import com.recipes.recipe.models.Category;
 import com.recipes.recipe.models.Recipe;
 import com.recipes.recipe.models.User;
@@ -18,6 +20,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 @Service
@@ -37,8 +40,15 @@ public class RecipeService {
         this.categoryRepository = categoryRepository;
     }
 
-    public String index() {
-        return "index";
+    @Transactional(rollbackOn = NotFoundException.class)
+    public List<RecipeDTO> index() {
+        List<Recipe> recipes = this.recipeRepository.findAll();
+
+        if(recipes.isEmpty()){
+            throw new RuntimeException("Recipe not found");
+        }else {
+            return recipes.stream().map(RecipeDTO::toJSON).toList();
+        }
     }
 
     @Async

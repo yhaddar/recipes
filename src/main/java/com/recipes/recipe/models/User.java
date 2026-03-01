@@ -3,7 +3,6 @@ package com.recipes.recipe.models;
 import com.recipes.recipe.enums.Gender;
 import com.recipes.recipe.models.base.Base;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
