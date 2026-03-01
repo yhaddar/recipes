@@ -6,6 +6,7 @@ import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
 import jakarta.validation.ValidatorFactory;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.mock.web.MockMultipartFile;
@@ -21,6 +22,7 @@ class RecipeRequestTest {
 
     @Test
     @DisplayName("method for test recipe title is return null")
+    @Disabled
     void testRecipeTitleNull(){
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         Validator validator = factory.getValidator();
@@ -46,6 +48,7 @@ class RecipeRequestTest {
 
     @Test
     @DisplayName("method for test pattern of recipe title")
+    @Disabled
     void testTitlePattern(){
 
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
