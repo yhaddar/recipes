@@ -43,8 +43,8 @@ public class User extends Base {
     @Enumerated(value = EnumType.STRING)
     private Gender gender;
 
-    @JoinColumn(name = "address_id", nullable = true, referencedColumnName = "id")
     @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id", nullable = true, referencedColumnName = "id")
     private Address address;
 
     private boolean email_verified = false;

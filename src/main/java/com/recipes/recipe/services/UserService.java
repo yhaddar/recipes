@@ -46,7 +46,6 @@ public class UserService {
         address.setCountry(userRequest.getAddress().getCountry());
         address.setState(userRequest.getAddress().getState());
         address.setPostal_code(userRequest.getAddress().getPostalCode());
-
         user.setAddress(address);
 
         this.userRepository.save(user);
