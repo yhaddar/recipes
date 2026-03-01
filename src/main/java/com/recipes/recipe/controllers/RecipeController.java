@@ -31,9 +31,6 @@ public class RecipeController {
     }
 
     @PostMapping(value = "/add", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    /*
-        TODO : this method is not work yet
-     */
     CompletableFuture<ResponseEntity<String>> store(@Valid RecipeRequest recipeRequest) throws IOException {
         return this.recipeService.store(recipeRequest);
     }

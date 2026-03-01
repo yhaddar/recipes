@@ -27,12 +27,14 @@ public class RecipeService {
     private final RecipeRepository recipeRepository;
     private final S3Config s3Config;
     private final UserRepository userRepository;
+    private final CategoryRepository categoryRepository;
 
     @Autowired
-    RecipeService(RecipeRepository recipeRepository, S3Config s3Config, UserRepository userRepository){
+    RecipeService(RecipeRepository recipeRepository, S3Config s3Config, UserRepository userRepository, CategoryRepository categoryRepository){
         this.recipeRepository = recipeRepository;
         this.s3Config = s3Config;
         this.userRepository = userRepository;
+        this.categoryRepository = categoryRepository;
     }
 
     public String index() {
@@ -47,20 +49,24 @@ public class RecipeService {
         String key = "recipes/"+file;
         this.s3Config.uploadFile(key, request.getMediaUrl().getInputStream());
 
-        User user = this.userRepository.findById(request.getUser().getId()).orElseThrow(() -> new RuntimeException("user not found"));
+        User user = this.userRepository.findById(request.getUser()).orElseThrow(() -> new RuntimeException("user not found"));
+        Category category = this.categoryRepository.findById(request.getCategory()).orElseThrow(() -> new RuntimeException("category not found"));
 
         Recipe recipe = new Recipe();
         recipe.setRecipe_title(request.getRecipeTitle());
-        recipe.setCategory(request.getCategory());
-        recipe.setType(recipe.getType());
+        recipe.setCategory(category);
+        recipe.setType(request.getType());
         recipe.setDescription(request.getDescription());
         recipe.setCooking_time(request.getCookingTime());
         recipe.setCountry_origin(request.getCountryOrigin());
         recipe.setDifficulty(request.getDifficulty());
         recipe.setUser(user);
+        recipe.setMedia_url(this.s3Config.getUrl(key));
 
         this.recipeRepository.save(recipe);
 
-        return CompletableFuture.completedFuture(ResponseEntity.ok().body("this is the recipe service"));
+        System.out.println(request.getType());
+
+        return CompletableFuture.completedFuture(ResponseEntity.ok().body("your recipe has been stored"));
     }
 }

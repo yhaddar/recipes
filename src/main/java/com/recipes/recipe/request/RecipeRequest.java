@@ -10,6 +10,8 @@ import jakarta.validation.constraints.*;
 import lombok.Data;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.UUID;
+
 @Data
 public class RecipeRequest {
     @NotBlank(message = "recipe title is required")
@@ -24,9 +26,10 @@ public class RecipeRequest {
     private double cookingTime;
 
     @NotNull(message = "category should be not empty")
-    private Category category;
+    private UUID category;
 
-    private User user;
+    @NotNull(message = "user should be not empty")
+    private UUID user;
 
     @NotNull(message = "type of recipe is required")
     private Type type;

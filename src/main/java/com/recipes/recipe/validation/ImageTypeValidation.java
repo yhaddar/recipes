@@ -19,7 +19,7 @@ public class ImageTypeValidation implements ConstraintValidator<ImageTypeAnnotat
     public boolean isValid(MultipartFile multipartFile, ConstraintValidatorContext constraintValidatorContext) {
         if(multipartFile.isEmpty())
             return false;
-        List<String> extensions = List.of("jpg", "jpeg", "png");
+        List<String> extensions = List.of("jpg", "jpeg", "png", "mp4");
         return extensions.contains(Objects.requireNonNull(multipartFile.getContentType()).split("/")[1]);
     }
 }
